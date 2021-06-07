@@ -6,7 +6,7 @@ export function InputWithIcon(props){
     const { Icon, ref, placeholder, className } = props;
 
     return(
-        <Input prefix={<Icon className="site-form-item-icon" />} placeholder={placeholder}
+        <Input prefix={Icon} placeholder={placeholder}
             className={className || "input-iconed"} ref={ref}
         />
     )
