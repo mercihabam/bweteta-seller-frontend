@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import TypewriterComponent from 'typewriter-effect';
 import './style.scss';
 
 export function HomaPage(){
+    const history = useHistory();
 
     useEffect(() =>{
         document.body.style.height = "100vh";
@@ -26,7 +28,7 @@ export function HomaPage(){
                     }}
                     />
                     <div className="intro-btn">
-                        <button>Commencer</button>
+                        <button onClick={() =>history.push("/login")} >Commencer</button>
                     </div>
                 </div>
             </div>

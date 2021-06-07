@@ -1,0 +1,32 @@
+.default-btn
+{
+    border: none;
+    background-color: rgb(255, 123, 0);
+    border-radius: 10px;
+    color: white;
+}
+.default-btn:hover
+{
+    background-color: rgb(255, 123, 0);
+    color: white;
+}
+.input-iconed
+{
+    border-radius: 5px;
+}
+.ant-input
+{
+    outline: 0;
+    border: none;
+}
+.ant-input-affix-wrapper:hover
+{
+    border: 1px solid rgb(255, 123, 0);
+}
+.ant-input-affix-wrapper:focus, .ant-input-affix-wrapper-focused
+{
+    border-color: rgb(255, 123, 0);
+    border-right-width: 1px !important;
+    outline: 0;
+    box-shadow: 0 0 0 2px rgba(255, 123, 0, 0.2);
+}

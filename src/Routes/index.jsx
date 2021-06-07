@@ -8,8 +8,8 @@ function Routes(){
         <Router>
             <Switch>
                 {
-                    unProtectedRoutes.map((route) =>(
-                        <Route key={route.name} exact={route.exact} component={route.component} />
+                    unProtectedRoutes.map(route =>(
+                        <Route key={route.name} exact={route.exact} path={route.path} component={route.component} />
                     ))
                 }
             </Switch>
