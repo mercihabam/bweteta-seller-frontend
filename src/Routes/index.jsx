@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { unProtectedRoutes } from "../helpers/getRoutes";
+import Nav from "../Containers/Nav";
+import { protectedRoutes, unProtectedRoutes } from "../helpers/getRoutes";
 
 
 function Routes(){
@@ -12,6 +13,13 @@ function Routes(){
                         <Route key={route.name} exact={route.exact} path={route.path} component={route.component} />
                     ))
                 }
+                <Nav>
+                    {
+                        protectedRoutes.map(route =>(
+                            <Route path={route.path} exact={route.exact} component={route.component} key={route.name} />
+                        ))
+                    }
+                </Nav>
             </Switch>
         </Router>
     );

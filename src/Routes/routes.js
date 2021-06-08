@@ -1,4 +1,5 @@
 import { HomaPage } from "../Containers/Pages/home";
+import OverView from "../Views/Overview";
 import { Login } from "../Views/User/login";
 import { Signup } from "../Views/User/signup";
 
@@ -22,6 +23,13 @@ const routes = [
         path: "/signup",
         component: Signup,
         protected: false,
+        exact: true
+    },
+    {
+        name: "overview",
+        path: "/overview",
+        component: OverView,
+        protected: true,
         exact: true
     }
 ];
