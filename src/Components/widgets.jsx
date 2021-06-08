@@ -1,29 +1,41 @@
 import CIcon from "@coreui/icons-react";
-import { CDropdown, CDropdownItem, CDropdownMenu, CDropdownToggle, CWidgetDropdown } from "@coreui/react";
+import { CDropdown, CDropdownItem, CDropdownMenu, CDropdownToggle, CWidgetBrand, CWidgetDropdown } from "@coreui/react";
 import "@coreui/coreui/dist/css/coreui.min.css";
+import ChartLineSimple from "../Views/charts/chartLineSimple";
+import { FacebookOutlined } from "@ant-design/icons";
 
 
-export function GradientWidget(){
+export function GradientWidget(props){
+  const { color, text, header, pointColor, iconWidget } = props;
     
     return (
         <div className={'row mt-2'}>
-          <div className={'col-6'}>
+          <div className={'widget'}>
             <CWidgetDropdown
-              color="gradient-warning"
-              header="9.823"
-              text="Members online"
+              color={color}
+              header={header}
+              text={text}
               footerSlot={
                 <div
                   className={'text-center'}
                   style={{ height: '100px' }}
                 >
-                  (Chart)
+                  <ChartLineSimple
+                    pointed
+                    className="c-chart-wrapper mt-3 mx-3"
+                    style={{height: '70px'}}
+                    dataPoints={[65, 59, 84, 84, 51, 55, 40]}
+                    pointHoverBackgroundColor={pointColor}
+                    label={text}
+                    labels="months"
+                  />
                 </div>
               }
             >
               <CDropdown>
                 <CDropdownToggle color="transparent">
                   <CIcon name={'cilSettings'} size={'md'}/>
+                  {iconWidget}
                 </CDropdownToggle>
                 <CDropdownMenu className="p-0" placement="bottom-end">
                   <CDropdownItem>Action</CDropdownItem>
@@ -35,4 +47,34 @@ export function GradientWidget(){
           </div>
         </div>
       )
+};
+
+
+
+
+export function FacebookWidget(){
+
+  return(
+      <CWidgetBrand
+        color="facebook"
+        rightHeader="89k"
+        rightFooter="friends"
+        leftHeader="459"
+        leftFooter="feeds"
+      >
+        <CIcon
+          name="cib-facebook"
+          height="52"
+          className="my-4"
+        />
+        <FacebookOutlined />
+        <ChartLineSimple
+          className="position-absolute w-100 h-100"
+          backgroundColor="rgba(255,255,255,.1)"
+          dataPoints={[65, 59, 84, 84, 51, 55, 40]}
+          label="Friends"
+          labels="months"
+        />
+      </CWidgetBrand>
+  )
 }

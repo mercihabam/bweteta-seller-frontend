@@ -4,7 +4,7 @@ import { SideBar } from "./sideBar";
 import "./style.scss";
 
 function Nav({children}){
-    const [ collapsed, setCollapsed ] = useState(false);
+    const [ collapsed, setCollapsed ] = useState(true);
 
     return(
         <div className="page">
