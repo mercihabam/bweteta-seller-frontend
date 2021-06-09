@@ -28,7 +28,7 @@ export function HomaPage(){
                     }}
                     />
                     <div className="intro-btn">
-                        <button onClick={() =>history.push("/login")} >Commencer</button>
+                        <button onClick={() =>history.push("/overview")} >Commencer</button>
                     </div>
                 </div>
             </div>
