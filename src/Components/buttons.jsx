@@ -2,10 +2,16 @@ import { Button } from "antd";
 import "./style.scss";
 
 export function DefaultBtn(props){
-    const { style, loading, className, Icon, label, block } = props;
+    const { loading, className, Icon, label, block, onClick, disabled } = props;
 
     return(
-        <Button block={block} icon={Icon} className={`default-btn ${className}`} loading={loading} style={style}>
+        <Button disabled={disabled} onClick={onClick} block={block} icon={Icon} className={`default-btn ${className}`} loading={loading}
+            style={{
+                backgroundColor: "rgb(255, 123, 0)",
+                borderRadius: 10,
+                color: "white",
+                border: "none"
+            }}>
             {label}
         </Button>
     );

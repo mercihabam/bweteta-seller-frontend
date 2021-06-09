@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import Routes from './Routes';
 import store from './Redux/store';
+import 'antd/dist/antd.css';
 
 ReactDOM.render(
   <Provider store={store}>

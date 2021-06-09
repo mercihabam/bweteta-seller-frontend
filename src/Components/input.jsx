@@ -1,13 +1,16 @@
 import { Input } from "antd";
-import 'antd/dist/antd.css';
 import "./style.scss";
 
+const inputStyle = {
+    borderRadius: 5
+};
+
 export function InputWithIcon(props){
-    const { Icon, ref, placeholder, className } = props;
+    const { Icon, placeholder, className } = props;
 
     return(
         <Input prefix={Icon} placeholder={placeholder}
-            className={className || "input-iconed"} ref={ref}
+            className={className || "input-iconed"} style={inputStyle}
         />
     )
 };
