@@ -1,5 +1,6 @@
 import axios from "axios"
-import { GET_CURRENT_USER_ERROR, GET_CURRENT_USER_START, GET_CURRENT_USER_SUCCESS, LOGIN_ERROR, LOGIN_START, LOGIN_SUCCESS } from "../actions-types/users"
+import { sendNotif } from "../../Utils/notification";
+import { GET_CURRENT_USER_ERROR, GET_CURRENT_USER_START, GET_CURRENT_USER_SUCCESS, LOGIN_ERROR, LOGIN_START, LOGIN_SUCCESS, SIGNUP_ERROR, SIGNUP_START, SIGNUP_SUCCESS } from "../actions-types/users"
 
 
 export async function getCurrentUser(dispatch){
@@ -15,7 +16,7 @@ export async function getCurrentUser(dispatch){
         if(res.data.status === 200){
             dispatch({
                 type: GET_CURRENT_USER_SUCCESS,
-                paylaod: res.data.data
+                payload: res.data.data
             })
         }else if(res.data.status === 401){
             dispatch({
@@ -44,7 +45,7 @@ export async function login(data, next, dispatch, history){
                 payload: res.data.data.user
             });
             localStorage.setItem("auth-token", res.data.data.token);
-            history.push(next);
+            window.location = next;
         }else if(res.data.error){
             dispatch({
                 type: LOGIN_ERROR,
@@ -56,5 +57,35 @@ export async function login(data, next, dispatch, history){
             type: LOGIN_ERROR,
             payload: "Le serveur ne reponds pas"
         })
+    }
+};
+
+
+export async function signup(data, dispatch){
+    dispatch({
+        type: SIGNUP_START
+    });
+
+    try {
+        const res = await axios.post(`https://seller-backend.herokuapp.com/api/v1/users/signup`, data);
+        if(res.data.status === 201){
+            dispatch({
+                type: SIGNUP_SUCCESS,
+                payload: res.data.data.user
+            });
+            localStorage.setItem("auth-token", res.data.data.token);
+            sendNotif("success", res.data.msg)
+        }else if(res.data.error){
+            dispatch({
+                type: SIGNUP_ERROR,
+                payload: res.data.error
+            })
+        }
+    } catch (error) {
+        dispatch({
+            type: SIGNUP_ERROR,
+            payload: "Le serveur ne reponds pas"
+        });
+        console.error(error);
     }
 }

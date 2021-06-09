@@ -6,11 +6,11 @@ const inputStyle = {
 };
 
 export function InputWithIcon(props){
-    const { Icon, placeholder, className } = props;
+    const { Icon, placeholder, className, onChange } = props;
 
     return(
         <Input prefix={Icon} placeholder={placeholder}
-            className={className || "input-iconed"} style={inputStyle}
+            className={className || "input-iconed"} style={inputStyle} onChange={onChange}
         />
     )
 };

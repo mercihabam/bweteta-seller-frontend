@@ -98,3 +98,36 @@
     left: 8%;
     top: 100px;
 }
+.popover-icon
+{
+    border: 1px solid gray;
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    margin: auto;
+}
+.div-logout
+{
+    display: flex;
+    align-items: center;
+}
+.icon-logout
+{
+    margin-right: 5px;
+}
+.pop-content div 
+{
+    margin-bottom: 10px;
+    transition: .5s;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.pop-content div:hover
+{
+    background-color: rgb(228, 228, 228);
+}
+.pop-content div:not(:last-child)
+{
+    border-bottom: 1px solid rgb(228, 228, 228);
+}

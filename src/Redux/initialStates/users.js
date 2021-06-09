@@ -11,5 +11,11 @@ export default {
         data: {},
         error: null,
         msg: null
+    },
+    signup: {
+        loading: false,
+        data: {},
+        error: null,
+        msg: null
     }
 };
