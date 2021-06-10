@@ -44,6 +44,7 @@ export async function login(data, next, dispatch, history){
                 type: LOGIN_SUCCESS,
                 payload: res.data.data.user
             });
+            localStorage.setItem("old-visitor", true);
             localStorage.setItem("auth-token", res.data.data.token);
             window.location = next;
         }else if(res.data.error){

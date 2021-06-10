@@ -1,6 +1,7 @@
 .div-widgets
 {
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
     justify-content: space-between;
     padding: 0 20px;
@@ -8,4 +9,20 @@
 .widget
 {
     width: 250px;
+}
+
+
+@media (max-width: 500px) {
+    .div-widgets
+    {
+        justify-content: center;
+    }
+    .widget
+    {
+        width: 200px;
+    }
+    .facebook-widget
+    {
+        width: 200px;
+    }
 }

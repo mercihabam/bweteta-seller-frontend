@@ -76,3 +76,18 @@
     background-color: white;
     animation: animeLine 1s linear;
 }
+
+@media (max-width: 500px) {
+    .intro
+    {
+        left: 10%;
+    }
+    .intro-head
+    {
+        font-size: 30px;
+        text-transform: uppercase;
+    }
+    .line{
+        width: 200px;
+    }
+}

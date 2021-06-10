@@ -55,26 +55,29 @@ export function GradientWidget(props){
 export function FacebookWidget(){
 
   return(
-      <CWidgetBrand
-        color="facebook"
-        rightHeader="89k"
-        rightFooter="friends"
-        leftHeader="459"
-        leftFooter="feeds"
-      >
-        <CIcon
-          name="cib-facebook"
-          height="52"
-          className="my-4"
-        />
-        <FacebookOutlined />
-        <ChartLineSimple
-          className="position-absolute w-100 h-100"
-          backgroundColor="rgba(255,255,255,.1)"
-          dataPoints={[65, 59, 84, 84, 51, 55, 40]}
-          label="Friends"
-          labels="months"
-        />
-      </CWidgetBrand>
+      <div className="widget">
+        <CWidgetBrand
+          color="facebook"
+          rightHeader="2k"
+          rightFooter="j'aime"
+          leftHeader="12"
+          leftFooter="publications"
+          className="facebook-widget"
+        >
+          <CIcon
+            name="cib-facebook"
+            height="52"
+            className="my-4"
+          />
+          <FacebookOutlined className="icon-facebook" />
+          <ChartLineSimple
+            className="position-absolute w-100 h-100"
+            backgroundColor="rgba(255,255,255,.1)"
+            dataPoints={[65, 59, 84, 84, 51, 55, 40]}
+            label="Friends"
+            labels="months"
+          />
+        </CWidgetBrand>
+      </div>
   )
 }

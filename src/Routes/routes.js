@@ -1,18 +1,12 @@
-import { HomaPage } from "../Containers/Pages/home";
+// import { HomaPage } from "../Containers/Pages/home";
 import OverView from "../Views/Overview";
+import Products from "../Views/Products";
 import { UserShops } from "../Views/Shops/allByUser";
 import { CreateShop } from "../Views/Shops/createShop";
 import { Login } from "../Views/User/login";
 import { Signup } from "../Views/User/signup";
 
 const routes = [
-    {
-        name: "Home page",
-        path: "/",
-        component: HomaPage,
-        protected: false,
-        exact: true
-    },
     {
         name: "login page",
         path: "/login",
@@ -51,6 +45,14 @@ const routes = [
         protected: true,
         exact: true,
         nav: false
+    },
+    {
+        name: "view products",
+        path: "/products",
+        component: Products,
+        protected: true,
+        exact: true,
+        nav: true
     },
 ];
 

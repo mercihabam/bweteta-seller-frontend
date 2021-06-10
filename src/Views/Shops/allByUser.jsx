@@ -1,8 +1,8 @@
 import "./style.scss";
 import { PlusOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router";
-import { useEffect } from "react";
-import { getUserShops } from "../../Redux/actions/shopActions";
+import { useEffect, useState } from "react";
+import { getCurrentShop, getUserShops } from "../../Redux/actions/shopActions";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
@@ -11,27 +11,39 @@ export function UserShops(){
     const dispatch = useDispatch();
     const { shopsRows } = useSelector(({ shops: { shopsByUser } }) =>shopsByUser);
     const { data } = useSelector(({ users: { currentUser } }) =>currentUser);
+    const { loadingShop } = useSelector(({ shops: { currentShop } }) =>currentShop);
+    const [ clicked, setClicked ] = useState();
 
     useEffect(() =>{
         getUserShops(data.id, dispatch, history)
     },[dispatch, data.id]);
+
+    const onShopClick = (id) =>{
+        setClicked(id);
+        getCurrentShop(id, dispatch, history);
+    };
 
     return(
         <div className="user-shops">
             <div className="div-shops-bg">
                 <div className="shops-welcome">
                     <div className="welcome">Bienvenue</div>
-                    <div className="wel-name">Mr (Mlle). Jacob</div>
+                    <div className="wel-name">Mr (Mlle). {data.fullName}</div>
                     <div className="well-msg">Conncetez-vous avec votre boutique</div>
                 </div>
                 <div className="shops-data">
                     <div className="div-shops">
                         {
                             shopsRows.map(shop =>(
-                                <div className="div-card-shop">
+                                <div onClick={()=>{ !loadingShop && onShopClick(shop.id) }} className="div-card-shop">
                                     <div className="shop-first-letter">
                                         { shop.name.substr(0, 1) }
                                     </div>
+                                    {loadingShop && clicked === shop.id ?
+                                        <div className="div-resto-loading">
+                                            <div className="resto-loading"></div>
+                                        </div>:null
+                                    }
                                     <div className="shop-name"> {shop.name} </div>
                                 </div>
                             ))

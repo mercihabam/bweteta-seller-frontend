@@ -1,6 +1,8 @@
 .sidebar
 {
     height: 100vh;
+    position: fixed;
+    z-index: 999;
 }
 .pro-sidebar > .pro-sidebar-inner 
 {
@@ -17,21 +19,23 @@
     display: flex;
     width: 100%;
     flex-direction: column-reverse;
-    position: fixed;
+    // position: fixed;
 }
 .header
 {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    background-color: white;
+    box-shadow: 0 0 5px rgb(238, 238, 238);
     padding: 30px;
+    position: fixed;
+    z-index: 999;
 }
 .nav-header
 {
     display: flex;
     width: 100%;
-    background-color: white;
-    box-shadow: 0 0 5px rgb(238, 238, 238);
     height: 80px;
 }
 .nav-sidebar
@@ -97,6 +101,8 @@
     position: absolute;
     left: 8%;
     top: 100px;
+    overflow: auto;
+    z-index: 1;
 }
 .popover-icon
 {
@@ -130,4 +136,24 @@
 .pop-content div:not(:last-child)
 {
     border-bottom: 1px solid rgb(228, 228, 228);
+}
+.location
+{
+    font-size: 14px;
+    color: rgb(199, 199, 199);
+    display: inline-block;
+    margin-left: 10px;
+}
+
+
+@media (max-width: 500px) {
+    .content
+    {
+        width: 70%;
+        left: 25%;
+        top: 100px;
+    }
+    .location{
+        display: none;
+    }
 }

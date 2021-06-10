@@ -10,6 +10,7 @@ export function Header(props){
     const history = useHistory();
     const { collapsed, setCollapsed } = props;
     const { data } = useSelector(({ users: { currentUser } }) =>currentUser);
+    const { dataShop } = useSelector(({ shops: { currentShop } }) =>currentShop);
 
     const content = (
         <div className="pop-content">
@@ -32,7 +33,7 @@ export function Header(props){
                 <div className="icon-toggle">
                     <MenuOutlined onClick={() =>setCollapsed(!collapsed)} />
                 </div>
-                <div className="active-route"> Molato shop {location.pathname} </div>
+                <div className="active-route"> {dataShop.name} <span className="location">{location.pathname}</span> </div>
             </div>
             <div className="header-right">
                 <div className="notif">
@@ -43,7 +44,7 @@ export function Header(props){
                 <div className="avatar-user">
                     <Popover arrowContent placement="bottomRight" title={title} content={content} trigger="click">
                         <Avatar style={{ verticalAlign: 'middle', cursor: "pointer" }} gap={0}>
-                            {data.fullName.substr(0, 1)}
+                            {data.fullName && data.fullName.substr(0, 1)}
                         </Avatar>
                     </Popover>
                 </div>
