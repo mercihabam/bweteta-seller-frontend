@@ -5,6 +5,7 @@ import { getCurrentShop } from "../../Redux/actions/shopActions";
 import { LoadingComponent } from "../../Utils/loaders";
 import { Header } from "./header";
 import { SideBar } from "./sideBar";
+import { SideBarMob } from "./siderMob";
 import "./style.scss";
 
 function Nav({children}){
@@ -20,6 +21,28 @@ function Nav({children}){
         }
     }, [dispatch]);
 
+    const toggleSider = () =>{
+        const btnDisplay = document.querySelector(".icon-collapse");
+        const sider = document.querySelector(".sidebar-mob");
+        const divSider = document.querySelector(".nav-mob-sider");
+        const bgSiser = document.querySelector(".side-mob-bg");
+        if(btnDisplay && sider && divSider && bgSiser){
+            btnDisplay.addEventListener("click", () =>{
+                sider.style.transform = "translateX(-0%)";
+                divSider.style.display = "block"
+            });
+
+            bgSiser.addEventListener("click", () =>{
+                sider.style.transform = "translateX(-40%)";
+                setTimeout(() =>{
+                    divSider.style.display = "none"
+                }, [300]);
+            })
+        }
+    };
+
+    toggleSider();
+
     return(loadingShop ?
         <LoadingComponent />:
         <div className="page">
@@ -29,6 +52,10 @@ function Nav({children}){
                 </div>
                 <div className="nav-header">
                     <Header collapsed={collapsed} setCollapsed={setCollapsed} />
+                </div>
+                <div className="nav-mob-sider">
+                    <div className="side-mob-bg"></div>
+                    <SideBarMob />
                 </div>
                 <div className="content">
                     {children}

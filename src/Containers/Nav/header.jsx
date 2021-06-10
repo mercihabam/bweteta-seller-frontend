@@ -33,6 +33,9 @@ export function Header(props){
                 <div className="icon-toggle">
                     <MenuOutlined onClick={() =>setCollapsed(!collapsed)} />
                 </div>
+                <div className="icon-collapse">
+                    <MenuOutlined />
+                </div>
                 <div className="active-route"> {dataShop.name} <span className="location">{location.pathname}</span> </div>
             </div>
             <div className="header-right">
