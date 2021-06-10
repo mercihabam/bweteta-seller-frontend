@@ -10,11 +10,14 @@ import "./style.scss";
 function Nav({children}){
     const [ collapsed, setCollapsed ] = useState(true);
     const { loadingShop } = useSelector(({ shops: { currentShop } }) =>currentShop);
+    const { isAuth } = useSelector(({ users: { currentUser } }) =>currentUser);
     const dispatch = useDispatch();
     const history = useHistory();
 
     useEffect(() =>{
-        getCurrentShop(localStorage.getItem("active-shop"), dispatch, history);
+        if(isAuth){
+            getCurrentShop(localStorage.getItem("active-shop"), dispatch, history);
+        }
     }, [dispatch]);
 
     return(loadingShop ?
