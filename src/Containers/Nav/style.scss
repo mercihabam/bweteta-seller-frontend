@@ -149,11 +149,15 @@
 @media (max-width: 500px) {
     .content
     {
-        width: 70%;
-        left: 25%;
+        width: 95%;
+        left: 3%;
         top: 100px;
     }
     .location{
+        display: none;
+    }
+    .nav-sidebar
+    {
         display: none;
     }
 }
