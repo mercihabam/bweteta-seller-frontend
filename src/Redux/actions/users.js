@@ -74,7 +74,8 @@ export async function signup(data, dispatch){
                 payload: res.data.data.user
             });
             localStorage.setItem("auth-token", res.data.data.token);
-            sendNotif("success", res.data.msg)
+            sendNotif("success", res.data.msg);
+            window.location = "/me/shops";
         }else if(res.data.error){
             dispatch({
                 type: SIGNUP_ERROR,

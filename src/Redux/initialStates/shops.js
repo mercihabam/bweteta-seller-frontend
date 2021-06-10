@@ -6,5 +6,11 @@ export default {
         data: {},
         error: null,
         msg: null
+    },
+    shopsByUser: {
+        loading: true,
+        data: {},
+        shopsRows: [],
+        shopsCount: 0,
     }
 }

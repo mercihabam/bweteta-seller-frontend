@@ -1,46 +1,40 @@
 import axios from "axios";
 import { sendNotif } from "../../Utils/notification";
-import { CREATE_SHOP_ERROR, CREATE_SHOP_START, CREATE_SHOP_SUCCESS } from "../actions-types/shops";
+import { GET_SHOPS_BY_USER_ERROR, GET_SHOPS_BY_USER_START, GET_SHOPS_BY_USER_SUCCESS } from "../actions-types/shops";
 
-
-const createShop = (data) => async(dispatch, history) =>{
+export async function getUserShops(id, dispatch, history){
     dispatch({
-        type: CREATE_SHOP_START
+        type: GET_SHOPS_BY_USER_START
     });
-
     try {
-        const res = await axios.post(`https://seller-backend.herokuapp.com/api/v1/shops/create-shop`, data, {
+        const res = await axios.get(`https://seller-backend.herokuapp.com/api/v1/shops/get-by-admin/${id}`, {
             headers: {
                 "auth-token": localStorage.getItem("auth-token")
             }
         });
-        if(res.data.status === 201){
+        if(res.data.status === 200){
             dispatch({
-                type: CREATE_SHOP_SUCCESS,
+                type: GET_SHOPS_BY_USER_SUCCESS,
                 payload: res.data.data
             });
-            history.push("/me/shops");
-            sendNotif("success", res.data.msg)
         }else if(res.data.status === 401){
             dispatch({
-                type: CREATE_SHOP_ERROR,
+                type: GET_SHOPS_BY_USER_ERROR,
                 payload: res.data.error
             });
-            history.push("/login", { next: "/create-shop" });
+            history.push("/login", { next: "/me/shops" });
             sendNotif("error", "Veuilez d'abord vous connecter");
         }else if(res.data.status){
             dispatch({
-                type: CREATE_SHOP_ERROR,
+                type: GET_SHOPS_BY_USER_ERROR,
                 payload: res.data.error
             })
         }
     } catch (error) {
         dispatch({
-            type: CREATE_SHOP_ERROR,
+            type: GET_SHOPS_BY_USER_ERROR,
             payload: "Le serveur ne reponds pas"
         });
         console.error(error);
     }
-};
-
-export default createShop;
+}

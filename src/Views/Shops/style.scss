@@ -1,0 +1,93 @@
+.div-shops-bg
+{
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    background: linear-gradient(335deg, rgb(119, 118, 187), 30%, rgb(1, 0, 59));
+}
+.custom-shape-divider-bottom-1623278223 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1623278223 svg {
+    position: relative;
+    display: block;
+    width: calc(150% + 1.3px);
+    height: 248px;
+}
+
+.custom-shape-divider-bottom-1623278223 .shape-fill {
+    fill: #FFFFFF;
+}
+.shops-welcome
+{
+    text-align: center;
+    color: white;
+    padding-top: 20vh;
+}
+.welcome 
+{
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.shops-data
+{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    z-index: 9;
+    width: 100%;
+}
+.div-shops
+{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.div-card-shop
+{
+    width: 200px;
+    height: 200px;
+    background-color: rgb(255, 123, 0);
+    color: white;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: .5s;
+    box-shadow: 0 0 20px rgba(207, 207, 207, 0.5);
+}
+.div-card-shop:hover
+{
+    background-color: rgb(238, 173, 111);
+}
+.shop-first-letter
+{
+    font-size: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.card-add-shop
+{
+    width: 200px;
+    height: 200px;
+    background-color: white;
+    color: rgb(255, 123, 0);
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: .5s;
+    box-shadow: 0 0 20px rgba(207, 207, 207, 0.5);
+}
