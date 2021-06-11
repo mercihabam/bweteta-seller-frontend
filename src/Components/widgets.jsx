@@ -6,7 +6,7 @@ import { FacebookOutlined } from "@ant-design/icons";
 
 
 export function GradientWidget(props){
-  const { color, text, header, pointColor, iconWidget } = props;
+  const { color, text, header, pointColor, iconWidget, act1, act2, act3 } = props;
     
     return (
         <div className={'row mt-2'}>
@@ -38,9 +38,9 @@ export function GradientWidget(props){
                   {iconWidget}
                 </CDropdownToggle>
                 <CDropdownMenu className="p-0" placement="bottom-end">
-                  <CDropdownItem>Action</CDropdownItem>
-                  <CDropdownItem>Another action</CDropdownItem>
-                  <CDropdownItem>Something else here...</CDropdownItem>
+                  {act1 && <CDropdownItem>{act1}</CDropdownItem>}
+                  {act2 && <CDropdownItem>{act2}</CDropdownItem>}
+                  {act3 && <CDropdownItem>{act3}</CDropdownItem>}
                 </CDropdownMenu>
               </CDropdown>
             </CWidgetDropdown>

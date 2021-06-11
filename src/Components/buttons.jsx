@@ -7,7 +7,7 @@ export function DefaultBtn(props){
     return(
         <Button disabled={disabled} onClick={onClick} block={block} icon={Icon} className={`default-btn ${className}`} loading={loading}
             style={{
-                backgroundColor: "rgb(255, 123, 0)",
+                backgroundColor: "#E0A808",
                 borderRadius: 10,
                 color: "white",
                 border: "none"

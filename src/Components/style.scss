@@ -1,18 +1,19 @@
+$colorDefault: #E0A808;
 .default-btn
 {
     border: none;
-    background-color: rgb(255, 123, 0);
+    background-color: $colorDefault;
     border-radius: 10px;
     color: white;
 }
 .default-btn:hover, .default-btn:active
 {
-    background-color: rgb(255, 123, 0);
+    background-color: $colorDefault;
     color: white;
 }
 .ant-btn:hover, .ant-btn:focus, .ant-btn:active
 {
-    background-color: rgb(255, 123, 0);
+    background-color: $colorDefault;
     color: white;
 }
 .input-iconed
@@ -26,11 +27,11 @@
 }
 .ant-input-affix-wrapper:hover
 {
-    border: 1px solid rgb(255, 123, 0);
+    border: 1px solid $colorDefault;
 }
 .ant-input-affix-wrapper:focus, .ant-input-affix-wrapper-focused
 {
-    border-color: rgb(255, 123, 0);
+    border-color: $colorDefault;
     border-right-width: 1px;
     outline: 0;
     box-shadow: 0 0 0 2px rgba(255, 123, 0, 0.2);

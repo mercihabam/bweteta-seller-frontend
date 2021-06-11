@@ -5,11 +5,12 @@ import { useEffect, useState } from "react";
 import { getCurrentShop, getUserShops } from "../../Redux/actions/shopActions";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { Spin } from "../../Utils/loaders";
 
 export function UserShops(){
     const history = useHistory();
     const dispatch = useDispatch();
-    const { shopsRows } = useSelector(({ shops: { shopsByUser } }) =>shopsByUser);
+    const { shopsRows, loading } = useSelector(({ shops: { shopsByUser } }) =>shopsByUser);
     const { data } = useSelector(({ users: { currentUser } }) =>currentUser);
     const { loadingShop } = useSelector(({ shops: { currentShop } }) =>currentShop);
     const [ clicked, setClicked ] = useState();
@@ -32,6 +33,10 @@ export function UserShops(){
                     <div className="well-msg">Conncetez-vous avec votre boutique</div>
                 </div>
                 <div className="shops-data">
+                    {loading ?
+                    <div className="div-spin-shops">
+                        <Spin />
+                    </div>:
                     <div className="div-shops">
                         {
                             shopsRows.map(shop =>(
@@ -53,6 +58,7 @@ export function UserShops(){
                             <div>Ajouter boutique</div>
                         </div>
                     </div>
+                    }
                 </div>
                 <div class="custom-shape-divider-bottom-1623278223">
                     <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">

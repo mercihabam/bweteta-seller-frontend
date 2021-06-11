@@ -1,7 +1,9 @@
+$colorDefault: #E0A808;
 .home
 {
     background: url("../public//planet_ecommerce.jpg");
     background-size: cover;
+    background-position: center;
     width: 100%;
     height: 100vh;
     overflow-y: hidden;
@@ -56,10 +58,11 @@
     border: none;
     outline: 0;
     margin-top: 20px;
-    background-color: rgb(255, 123, 0);
+    background-color: $colorDefault;
     color: white;
     font-size: 20px;
     cursor: pointer;
+    outline: 0;
 }
 @keyframes animeLine {
     from{

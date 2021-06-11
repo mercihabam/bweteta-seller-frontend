@@ -1,3 +1,4 @@
+$colorDefault: #E0A808;
 .div-shops-bg
 {
     position: relative;
@@ -56,7 +57,7 @@
 {
     width: 200px;
     height: 200px;
-    background-color: rgb(255, 123, 0);
+    background-color: $colorDefault;
     color: white;
     margin: 10px;
     display: flex;
@@ -66,10 +67,11 @@
     cursor: pointer;
     transition: .5s;
     box-shadow: 0 0 20px rgba(207, 207, 207, 0.5);
+    border-radius: 5px;
 }
 .div-card-shop:hover
 {
-    background-color: rgb(238, 173, 111);
+    background-color: #e4be55;
 }
 .shop-first-letter
 {
@@ -82,7 +84,10 @@
     width: 200px;
     height: 200px;
     background-color: white;
-    color: rgb(255, 123, 0);
+    color: $colorDefault;
+    border-radius: 5px;
+    font-weight: bold;
+    border: 2px solid $colorDefault;
     margin: 10px;
     display: flex;
     flex-direction: column;
@@ -122,6 +127,10 @@
     margin-left: -2px;
     margin-top: -2px;
     animation: spin 1s infinite ease-in-out;
+}
+.div-spin-shops
+{
+    margin-top: 50px;
 }
 
 @keyframes spin {

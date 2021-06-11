@@ -12,11 +12,16 @@ export function Header(props){
     const { data } = useSelector(({ users: { currentUser } }) =>currentUser);
     const { dataShop } = useSelector(({ shops: { currentShop } }) =>currentShop);
 
+    const disconnect = () =>{
+        localStorage.removeItem("auth-token");
+        window.location = "/login";
+    };
+
     const content = (
         <div className="pop-content">
           <div>Profile</div>
           <div onClick={() =>history.push("/me/shops")}>Changer de boutique</div>
-          <div className="div-logout"> <LogoutOutlined className="icon-logout" /> Deconnexion </div>
+          <div onClick={disconnect} className="div-logout"> <LogoutOutlined className="icon-logout" /> Deconnexion </div>
         </div>
     );
 
