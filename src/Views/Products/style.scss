@@ -1,0 +1,86 @@
+$colorDefault: #E0A808;
+.div-products
+{
+    display: flex;
+    flex-wrap: wrap;
+}
+.product
+{
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid rgb(214, 214, 214);
+    transition: .5s;
+}
+.product:hover
+{
+    background-color: rgba(255, 255, 255, 0.5);
+}
+.div-img-product
+{
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    border-radius: 50%;
+    background-color: rgb(223, 223, 223);
+    overflow: hidden;
+}
+.slick-product
+{
+    width: 100px;
+    height: 100px;
+    background-color: gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+.img-product
+{
+    max-width: 100px;
+}
+.product-price
+{
+    font-size: 10px;
+    color: $colorDefault;
+}
+.slick-slider
+{
+    width: 100px;
+    background-color: gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.slick-prev
+{
+    margin-left: 20px;
+    position: absolute;
+    z-index: 9;
+}
+.slick-next
+{
+    margin-right: 20px;
+    position: absolute;
+    z-index: 9;
+}
+
+
+@media (max-width: 500px) {
+    .product
+    {
+        width: 120px;
+    }
+    .div-products
+    {
+        justify-content: center;
+    }
+}

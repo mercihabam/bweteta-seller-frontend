@@ -1,9 +1,14 @@
+import { AllProducts } from "./all";
 
 
 function Products(){
 
     return(
-        <div className="products">Produits</div>
+        <div className="products">Produits
+            <div>
+                <AllProducts />
+            </div>
+        </div>
     );
 };
 
