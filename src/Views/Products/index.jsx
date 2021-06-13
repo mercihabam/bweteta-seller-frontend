@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useHistory } from "react-router";
 import { AllProducts } from "./all";
 
 
 function Products(){
-    const [ active, setActive ] = useState("all")
+    const [ active, setActive ] = useState("all");
+    const history = useHistory();
 
     const categorys = [
         "Habillement",
@@ -26,7 +28,7 @@ function Products(){
                 <AllProducts />
             </div>
             <div className="btn-add-prod">
-                <button className="btn-add">Créer un produit</button>
+                <button onClick={() =>history.push("/product/add")} className="btn-add">Créer un produit</button>
             </div>
         </div>
     );

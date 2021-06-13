@@ -1,6 +1,8 @@
 // import { HomaPage } from "../Containers/Pages/home";
 import OverView from "../Views/Overview";
 import Products from "../Views/Products";
+import { ProductForm } from "../Views/Products/addProduct";
+import { ProductDetail } from "../Views/Products/productDetail";
 import { UserShops } from "../Views/Shops/allByUser";
 import { CreateShop } from "../Views/Shops/createShop";
 import { Login } from "../Views/User/login";
@@ -50,6 +52,22 @@ const routes = [
         name: "view products",
         path: "/products",
         component: Products,
+        protected: true,
+        exact: true,
+        nav: true
+    },
+    {
+        name: "add product",
+        path: "/product/add",
+        component: ProductForm,
+        protected: true,
+        exact: true,
+        nav: true
+    },
+    {
+        name: "product detail",
+        path: "/product/detail/:id",
+        component: ProductDetail,
         protected: true,
         exact: true,
         nav: true
