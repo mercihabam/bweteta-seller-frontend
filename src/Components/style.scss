@@ -23,9 +23,12 @@ $colorDefault: #E0A808;
 .ant-input
 {
     outline: 0;
-    border: none;
 }
 .ant-input-affix-wrapper:hover, .ant-select:not(.ant-select-customize-input) .ant-select-selector:hover
+{
+    border: 1px solid $colorDefault;
+}
+.ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover
 {
     border: 1px solid $colorDefault;
 }
@@ -35,6 +38,10 @@ $colorDefault: #E0A808;
     border-right-width: 1px;
     outline: 0;
     box-shadow: 0 0 0 2px rgba(255, 123, 0, 0.2);
+}
+.ant-select:not(.ant-select-customize-input) .ant-select-selector
+{
+    border-radius: 5px;
 }
 .icon-facebook
 {
