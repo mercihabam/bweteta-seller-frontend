@@ -3,13 +3,28 @@ import { Button, Select, Switch } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 // import ImgCrop from 'antd-img-crop';
 import Dragger from "antd/lib/upload/Dragger";
+import { useEffect } from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router";
 import { DefaultBtn } from "../../Components/buttons";
 import { InputWithIcon } from "../../Components/input";
+import { getCategorys } from "../../Redux/actions/categoryActions";
+import createProduct from "../../Redux/actions/createProduct";
 const { Option } = Select;
 
 export function ProductForm(){
     const [ files, setFiles ] = useState();
+    const [ name, setName ] = useState();
+    const [ category, setCategory ] = useState();
+    const [ description, setDescription ] = useState();
+    const [ price, setPrice ] = useState();
+    const [ currency, setCurrency ] = useState();
+    const [ quantity, setQuantity ] = useState();
+    const [ isNew, setIsNew ] = useState();
+    const dispatch = useDispatch();
+    const history = useHistory();
     const [ colors, setColors ] = useState([
         {
             name: "noire",
@@ -55,7 +70,14 @@ export function ProductForm(){
         onChange(info) {
           if (info.file.status !== 'uploading') {
             info.file.status = "done";
-            setFiles(info.fileList);
+            const fileArray = [];
+            info.fileList.forEach(file => {
+                fileArray.push(file.originFileObj);
+                // console.log(file.originFileObj);
+            });
+            setFiles(fileArray)
+            // console.log(info.fileList);
+            console.log(files);
           }
         },
         onDrop(e) {
@@ -75,14 +97,32 @@ export function ProductForm(){
             }
         });
         setColors(array)
-    }
+    };
 
-      const categorys = [
-        "Habillement",
-        "Appareils electroniques",
-        "Cosmetiques",
-        "Accessoires"
-    ]
+    useEffect(() =>{
+        getCategorys(dispatch);
+    }, [dispatch]);
+
+    const { dataShop } = useSelector(({ shops: { currentShop } }) =>currentShop);
+
+    const onSubmit = async() =>{
+        if(files && name && category && description && price && currency && quantity){
+            createProduct({
+                name: name,
+                categoryId: category,
+                images: files,
+                description: description,
+                price: price,
+                colors: colors,
+                isNew: isNew,
+                currency: currency,
+                quantity: quantity,
+                shopId: dataShop.id
+            })(dispatch, history);
+        }
+    };
+
+    const { rowsCategorys, loadingCategorys } = useSelector(({ categorys: { categorys } }) =>categorys);
 
     return(
         <div className="form-product">
@@ -98,21 +138,24 @@ export function ProductForm(){
                 </Dragger>
             </div>
             <div className="input-product">
-                <InputWithIcon placeholder="Nom du produit" />
+                <InputWithIcon value={name} placeholder="Nom du produit" onChange={(e) =>setName(e.target.value)} />
             </div>
             <div className="input-product">
-                <Select onChange placeholder="Categorie du produit" name="category" style={{ width: "100%", borderRadius: 5}}>
+                <Select onChange={(value) =>setCategory(value)} placeholder="Categorie du produit"
+                 style={{ width: "100%", borderRadius: 5}}
+                 loading={loadingCategorys}
+                 >
                     {
-                        categorys.map(data =>(
-                            <Option value={data} key={data} > {data} </Option>
+                        rowsCategorys.map(data =>(
+                            <Option value={data.id} key={data.id} > {data.name} </Option>
                         ))
                     }
                 </Select>
             </div>
             <div className="input-product">
                 <TextArea
-                    // value={description}
-                    // onChange={(e) =>setDescription(e.target.value)}
+                    value={description}
+                    onChange={(e) =>setDescription(e.target.value)}
                     placeholder="Description du produit"
                     autoSize={{ minRows: 3, maxRows: 5 }}
                     style={{ borderRadius: 5 }}
@@ -120,10 +163,10 @@ export function ProductForm(){
             </div>
             <div className="input-product">
                 <div className="product-price">
-                    <InputWithIcon type="number" placeholder="Prix du produit" />
+                    <InputWithIcon value={price} type="number" placeholder="Prix du produit" onChange={(e) =>setPrice(e.target.value)} />
                 </div>
                 <div className="product-currency">
-                    <Select onChange placeholder="Devise de la monnaie" name="currency" style={{ width: "100%", borderRadius: 5}}>
+                    <Select onChange={(value) =>setCurrency(value)} placeholder="Devise de la monnaie" name="currency" style={{ width: "100%", borderRadius: 5}}>
                         <Option value="USD" key="USD" > USD </Option>
                         <Option value="CDF" key="CDF" > CDF </Option>
                     </Select>
@@ -131,12 +174,14 @@ export function ProductForm(){
             </div>
             <div className="input-product">
                 <div className="product-price">
-                    <InputWithIcon type="number" placeholder="Quantité en stock"  />
+                    <InputWithIcon type="number" placeholder="Quantité en stock" onChange={(e) =>setQuantity(e.target.value)}  />
                 </div>
                 <div className="switch-new">
                 <Switch
                     checkedChildren="Nouvauté"
+                    checked={isNew}
                     unCheckedChildren="Nouvauté"
+                    onChange={() =>setIsNew(!isNew)}
                 />
                 </div>
             </div>
@@ -151,7 +196,7 @@ export function ProductForm(){
                 </div>
             </div>
             <div className="div-btn">
-                <DefaultBtn block={true} Icon={ <CloudUploadOutlined /> } label="Enregistrer" />
+                <DefaultBtn onClick={onSubmit} block={true} Icon={ <CloudUploadOutlined /> } label="Enregistrer" />
             </div>
         </div>
     )
