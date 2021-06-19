@@ -4,5 +4,12 @@ export default {
         data: {},
         error: null,
         msg: null
+    },
+    allProducts: {
+        loadingProducts: true,
+        data: {},
+        rowsProducts: [],
+        countProducts: 0,
+        error: null
     }
 }

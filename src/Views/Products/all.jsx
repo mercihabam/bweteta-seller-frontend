@@ -2,32 +2,35 @@ import "./style.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useHistory } from "react-router";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getProducts } from "../../Redux/actions/productActions";
+import { useDispatch } from "react-redux";
+import {Image} from 'cloudinary-react';
 
 export function AllProducts(){
     const history = useHistory();
+    const dispatch = useDispatch();
+    const { dataShop } = useSelector(({ shops: { currentShop } }) =>currentShop);
+    const { rowsProducts, loadingProducts } = useSelector(({ products: { allProducts } }) =>allProducts);
 
-    const productsData = [
-        "Air Jordan",
-        "Samsnug j5 pro",
-        "Iphone 6",
-        "Hp",
-        "Mac book",
-        "Lenovo",
-        "Souris",
-        "Usb",
-    ];
+    useEffect(() =>{
+        getProducts(dataShop.id, 100, 0)(dispatch, history);
+    }, [dispatch]);
 
     return(
         <div className="all-products">
             <div className="div-products">
                 {
-                    productsData.map((product) =>(
-                        <div onClick={() =>history.push(`/product/detail/${product}`)} className="product">
+                    rowsProducts.map((product) =>(
+                        <div onClick={() =>history.push(`/product/detail/${product.id}`)} className="product">
                                     <div className="div-product-img">
-                                        <img onClick={() =>history.push(`/product/detail/${product}`)} src="https://img.bfmtv.com/c/400/250/1500f32/2532062d42f07dad346f0dae6.jpg" alt="" className="img-product" />
+                                        {
+                                            <Image cloudName="mulo" publicId={product.images[0]} className="img-product" />
+                                        }
                                     </div>
-                            <div className="product-name">{product}</div>
-                            <div className="product-price">220000 FC</div>
+                            <div className="product-name">{product.name}</div>
+                            <div className="product-price">{product.price} { product.currency }</div>
                         </div>
                     ))
                 }
