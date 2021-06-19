@@ -15,7 +15,7 @@ import createProduct from "../../Redux/actions/createProduct";
 const { Option } = Select;
 
 export function ProductForm(){
-    const [ files, setFiles ] = useState();
+    const [ files, setFiles ] = useState([]);
     const [ name, setName ] = useState();
     const [ category, setCategory ] = useState();
     const [ description, setDescription ] = useState();
@@ -75,8 +75,7 @@ export function ProductForm(){
                 fileArray.push(file.originFileObj);
                 // console.log(file.originFileObj);
             });
-            setFiles(fileArray)
-            // console.log(info.fileList);
+            readFiles(fileArray);
             console.log(files);
           }
         },
@@ -84,6 +83,18 @@ export function ProductForm(){
           console.log('Dropped files', e.dataTransfer.files);
         },
       };
+
+    const readFiles = async(files) =>{
+        const fileArray = [];
+        await files.forEach(file =>{
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onloadend = () =>{
+                fileArray.push(reader.result)
+            }
+        });
+        setFiles(fileArray)
+    };
     
 
     const onColorToggle = async(color) =>{
@@ -107,13 +118,18 @@ export function ProductForm(){
 
     const onSubmit = async() =>{
         if(files && name && category && description && price && currency && quantity){
+            const colorArray = colors.filter(color => color.active);
+            let newColors = [];
+            await colorArray.forEach(color =>{
+                newColors.push(color.name)
+            });
             createProduct({
                 name: name,
                 categoryId: category,
                 images: files,
                 description: description,
                 price: price,
-                colors: colors,
+                colors: newColors,
                 isNew: isNew,
                 currency: currency,
                 quantity: quantity,
