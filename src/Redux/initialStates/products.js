@@ -11,5 +11,11 @@ export default {
         rowsProducts: [],
         countProducts: 0,
         error: null
+    },
+    productById:
+    {
+        loadingProduct: true,
+        productData: { images: [], colors: [] },
+        error: null
     }
 }

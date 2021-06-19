@@ -134,8 +134,6 @@ $colorDefault: #E0A808;
 .div-colors
 {
     display: flex;
-    // justify-content: center;
-    // align-items: center;
     flex-direction: column;
 }
 .div-choose-colors
@@ -216,6 +214,8 @@ $colorDefault: #E0A808;
 .div-detail-imgs
 {
     width: 45%;
+    max-height: 400px;
+    overflow: hidden;
     background-color: rgb(231, 231, 231);
 }
 .div-detail-imgs div
@@ -228,7 +228,8 @@ $colorDefault: #E0A808;
 {
     display: block;
     margin: auto;
-    max-width: 100%;
+    max-width: 90%;
+    max-height: 400px;
 }
 .div-detail-imgs .slick-slider .slick-dots
 {

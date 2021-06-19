@@ -115,6 +115,7 @@ export function ProductForm(){
     }, [dispatch]);
 
     const { dataShop } = useSelector(({ shops: { currentShop } }) =>currentShop);
+    const { loadingAdd } = useSelector(({ products: { createProduct } }) =>createProduct);
 
     const onSubmit = async() =>{
         if(files && name && category && description && price && currency && quantity){
@@ -212,7 +213,7 @@ export function ProductForm(){
                 </div>
             </div>
             <div className="div-btn">
-                <DefaultBtn onClick={onSubmit} block={true} Icon={ <CloudUploadOutlined /> } label="Enregistrer" />
+                <DefaultBtn disabled={loadingAdd} onClick={onSubmit} block={true} Icon={ <CloudUploadOutlined /> } label="Enregistrer" />
             </div>
         </div>
     )
