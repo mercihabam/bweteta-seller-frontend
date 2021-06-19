@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { getProducts } from "../../Redux/actions/productActions";
 import { useDispatch } from "react-redux";
 import {Image} from 'cloudinary-react';
+import { Skeleton } from "antd";
 
 export function AllProducts(){
     const history = useHistory();
@@ -20,21 +21,28 @@ export function AllProducts(){
 
     return(
         <div className="all-products">
-            <div className="div-products">
-                {
-                    rowsProducts.map((product) =>(
-                        <div onClick={() =>history.push(`/product/detail/${product.id}`)} className="product">
-                                    <div className="div-product-img">
-                                        {
-                                            <Image cloudName="mulo" publicId={product.images[0]} className="img-product" />
-                                        }
-                                    </div>
-                            <div className="product-name">{product.name}</div>
-                            <div className="product-price">{product.price} { product.currency }</div>
-                        </div>
-                    ))
-                }
-            </div>
+            {
+                loadingProducts ?
+                <div>
+                    <Skeleton active />
+                    <Skeleton active />
+                </div>:
+                <div className="div-products">
+                    {
+                        rowsProducts.map((product) =>(
+                            <div onClick={() =>history.push(`/product/detail/${product.id}`)} className="product">
+                                        <div className="div-product-img">
+                                            {
+                                                <Image cloudName="mulo" publicId={product.images[0]} className="img-product" />
+                                            }
+                                        </div>
+                                <div className="product-name">{product.name}</div>
+                                <div className="product-price">{product.price} { product.currency }</div>
+                            </div>
+                        ))
+                    }
+                </div>
+            }
         </div>
     )
 }

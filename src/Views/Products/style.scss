@@ -16,9 +16,11 @@ $colorDefault: #E0A808;
     text-align: center;
     cursor: pointer;
     border: 1px solid rgb(214, 214, 214);
+    border-radius: 10px;
     transition: .5s;
     padding-bottom: 20px;
     padding-top: 10px;
+    // background-color: white;
 }
 .product:hover
 {

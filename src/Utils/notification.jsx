@@ -1,3 +1,4 @@
+import { message } from 'antd';
 import cogoToast from 'cogo-toast';
 
 export function sendNotif(type="success", content){
@@ -7,3 +8,7 @@ export function sendNotif(type="success", content){
         hideAfter: 5,
     })
 };
+
+export function loadingMsg(content){
+    return message.loading({ content: content, duration: 0, key: "load" })
+}
