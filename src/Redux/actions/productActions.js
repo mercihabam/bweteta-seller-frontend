@@ -8,7 +8,7 @@ export const getProducts = (shopId, limit, offset) => async(dispatch, history) =
         type: GET_PRODUCTS_START
     });
     try {
-        const res = await axios.get(`http://localhost:5000/api/v1/products/products-by-shop/${shopId}?limit=${limit}&offset=${offset}`, {
+        const res = await axios.get(`https://seller-backend.herokuapp.com/api/v1/products/products-by-shop/${shopId}?limit=${limit}&offset=${offset}`, {
             headers: {
                 "auth-token": localStorage.getItem("auth-token")
             }
@@ -47,7 +47,7 @@ export const getProductDetail = (productId) => async(dispatch) =>{
         type: GET_PRODUCT_START
     });
     try {
-        const res = await axios.get(`http://localhost:5000/api/v1/products/product-by-id/${productId}`, {
+        const res = await axios.get(`https://seller-backend.herokuapp.com/api/v1/products/product-by-id/${productId}`, {
             headers: {
                 "auth-token": localStorage.getItem("auth-token")
             }

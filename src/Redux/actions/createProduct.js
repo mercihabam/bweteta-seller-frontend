@@ -10,7 +10,7 @@ const createProduct = (data) => async(dispatch, history) =>{
     });
     loadingMsg("Patientez...");
     try {
-        const res = await axios.post(`http://localhost:5000/api/v1/products/create-product`, data, {
+        const res = await axios.post(`https://seller-backend.herokuapp.com/api/v1/products/create-product`, data, {
             headers: {
                 "auth-token": localStorage.getItem("auth-token")
             }
