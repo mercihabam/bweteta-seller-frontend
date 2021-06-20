@@ -281,6 +281,45 @@ $colorDefault: #E0A808;
 {
     margin-left: 5px;
 }
+.edit-product-form
+{
+    margin-top: 20px;
+    transform: scaleY(0);
+    height: 0;
+    overflow: hidden;
+    transition: .5s ease-out;
+    
+}
+.edit-product-form.view
+{
+    transform: scaleY(1);
+    height: 100%;
+}
+.edit-product 
+{
+    margin-bottom: 20px;
+}
+.edit-label
+{
+    display: inline-block;
+    font-size: 14px;
+    color: rgb(163, 163, 163);
+}
+.form-toggle
+{
+    text-align: center;
+    color: gray;
+    cursor: pointer;
+    margin-top: 20px;
+    max-width: 150px;
+    margin: auto;
+}
+.div-edit-btn
+{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
 
 
 @media (max-width: 500px) {
