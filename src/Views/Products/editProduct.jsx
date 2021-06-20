@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { DefaultBtn } from "../../Components/buttons";
 import { InputWithIcon } from "../../Components/input";
 import { getCategorys } from "../../Redux/actions/categoryActions";
+import { updateProduct } from "../../Redux/actions/productActions";
 const { Option } = Select;
 
 export function EditProductForm(props){
@@ -77,6 +78,19 @@ export function EditProductForm(props){
     };
 
     const { rowsCategorys, loadingCategorys } = useSelector(({ categorys: { categorys } }) =>categorys);
+    const { loadingUpdate } = useSelector(({ products: { updateProduct } }) =>updateProduct);
+
+    const onUpdate = () =>{
+        updateProduct({
+            name: name,
+            categoryId: category,
+            description: description,
+            price: price,
+            isNew: isNew,
+            currency: currency,
+            quantity: quantity,
+        }, product.id)(dispatch);
+    }
 
     return(
         <div className={className}>
@@ -146,7 +160,7 @@ export function EditProductForm(props){
                 </div>
             </div>
             <div className="div-edit-btn">
-                <DefaultBtn Icon={ <CloudUploadOutlined /> } label="Mettre à jour" />
+                <DefaultBtn onClick={onUpdate} loading={loadingUpdate} Icon={ <CloudUploadOutlined /> } label="Mettre à jour" />
                 <div className="delete-btn">
                     <Button color="red" icon={ <DeleteOutlined /> }
                     style={{

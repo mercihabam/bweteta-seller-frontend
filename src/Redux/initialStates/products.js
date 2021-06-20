@@ -1,6 +1,12 @@
 export default {
     createProduct: {
-        loadingAdd: null,
+        loadingAdd: false,
+        data: {},
+        error: null,
+        msg: null
+    },
+    updateProduct: {
+        loadingUpdate: false,
         data: {},
         error: null,
         msg: null
