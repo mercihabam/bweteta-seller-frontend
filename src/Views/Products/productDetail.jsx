@@ -92,7 +92,7 @@ export function ProductDetail(){
                             <div className="detail-colors">
                                 {
                                     productData.colors.map(color =>(
-                                        <div className={`color ${ color }`}> {color} </div>
+                                        <div className={`detail-color ${ color }`}></div>
                                     ))
                                 }
                             </div>

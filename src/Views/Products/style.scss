@@ -257,29 +257,13 @@ $colorDefault: #E0A808;
 {
     display: flex;
     flex-wrap: wrap;
+    margin-top: 10px;
 }
 .detail-actions
 {
     display: flex;
     align-items: center;
     margin-top: 10px;
-}
-.detail-edit
-{
-    display: flex;
-    align-items: center;
-    color: rgb(3, 160, 223);
-    cursor: pointer;
-}
-.detail-delete
-{
-    margin-left: 10px;
-    color: rgb(201, 0, 0);
-    cursor: pointer;
-}
-.detail-edit div:last-child
-{
-    margin-left: 5px;
 }
 .edit-product-form
 {
@@ -319,6 +303,16 @@ $colorDefault: #E0A808;
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
+}
+.detail-color
+{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+.detail-color:not(:first-child)
+{
+    margin-left: 10px;
 }
 
 

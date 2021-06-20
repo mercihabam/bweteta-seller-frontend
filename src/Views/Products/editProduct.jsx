@@ -66,16 +66,33 @@ export function EditProductForm(props){
 
     const onColorToggle = async(color) =>{
         const array = [];
-        await colors.forEach(value =>{
-            if(value === color){
-                const newColor = { name: color.name, active: !color.active };
+        colors.forEach(value =>{
+            const string1 = JSON.stringify(color);
+            const string2 = JSON.stringify(value);
+            if(string1 === string2){
+                const newColor = { name: color.name, active: !value.active };
                 array.push(newColor)
             }else{
-                array.push(value)
+                array.push(value);
+                console.log(value);
             }
         });
-        setColors(array)
+        setColors(array);
     };
+
+    const colorsChanges = async() =>{
+        await product.colors.forEach(async elmt =>{
+            const newElmt = {
+                name: elmt,
+                active: false,
+            };
+            onColorToggle(newElmt);
+        });
+    };
+
+    useEffect(() =>{
+        colorsChanges();
+    }, [product])
 
     const { rowsCategorys, loadingCategorys } = useSelector(({ categorys: { categorys } }) =>categorys);
     const { loadingUpdate } = useSelector(({ products: { updateProduct } }) =>updateProduct);
