@@ -60,6 +60,9 @@ $colorDefault: #E0A808;
     display: flex;
     flex-wrap: wrap;
     padding: 0 15px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(202, 202, 202);
 }
 .category
 {
@@ -318,11 +321,18 @@ $colorDefault: #E0A808;
 @media (max-width: 500px) {
     .product
     {
-        width: 120px;
+        width: 140px;
+        margin: 5px;
+        padding: 5px;
+        padding-bottom: 15px;
     }
     .div-products
     {
         justify-content: center;
+    }
+    .div-categorys
+    {
+        padding-left: 0px;
     }
     .form-product
     {
