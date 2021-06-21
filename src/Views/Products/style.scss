@@ -7,7 +7,7 @@ $colorDefault: #E0A808;
 .product
 {
     width: 150px;
-    height: 170px;
+    height: 230px;
     margin: 10px;
     display: flex;
     justify-content: center;
@@ -20,7 +20,6 @@ $colorDefault: #E0A808;
     transition: .5s;
     padding-bottom: 20px;
     padding-top: 10px;
-    // background-color: white;
 }
 .product:hover
 {
@@ -61,6 +60,9 @@ $colorDefault: #E0A808;
     display: flex;
     flex-wrap: wrap;
     padding: 0 15px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(202, 202, 202);
 }
 .category
 {
@@ -257,6 +259,7 @@ $colorDefault: #E0A808;
 {
     display: flex;
     flex-wrap: wrap;
+    margin-top: 10px;
 }
 .detail-actions
 {
@@ -264,33 +267,72 @@ $colorDefault: #E0A808;
     align-items: center;
     margin-top: 10px;
 }
-.detail-edit
+.edit-product-form
+{
+    margin-top: 20px;
+    transform: scaleY(0);
+    height: 0;
+    overflow: hidden;
+    transition: .5s ease-out;
+    
+}
+.edit-product-form.view
+{
+    transform: scaleY(1);
+    height: 100%;
+}
+.edit-product 
+{
+    margin-bottom: 20px;
+}
+.edit-label
+{
+    display: inline-block;
+    font-size: 14px;
+    color: rgb(163, 163, 163);
+}
+.form-toggle
+{
+    text-align: center;
+    color: gray;
+    cursor: pointer;
+    margin-top: 20px;
+    max-width: 150px;
+    margin: auto;
+}
+.div-edit-btn
 {
     display: flex;
-    align-items: center;
-    color: rgb(3, 160, 223);
-    cursor: pointer;
+    justify-content: space-between;
+    margin-top: 20px;
 }
-.detail-delete
+.detail-color
+{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+.detail-color:not(:first-child)
 {
     margin-left: 10px;
-    color: rgb(201, 0, 0);
-    cursor: pointer;
-}
-.detail-edit div:last-child
-{
-    margin-left: 5px;
 }
 
 
 @media (max-width: 500px) {
     .product
     {
-        width: 120px;
+        width: 140px;
+        margin: 5px;
+        padding: 5px;
+        padding-bottom: 15px;
     }
     .div-products
     {
         justify-content: center;
+    }
+    .div-categorys
+    {
+        padding-left: 0px;
     }
     .form-product
     {

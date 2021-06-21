@@ -44,7 +44,7 @@ const createProduct = (data) => async(dispatch, history) =>{
             type: CREATE_PRODUCT_ERROR,
             payload: "Le serveur ne reponds pas"
         });
-        console.error(error);
+        message.destroy("load")
     }
 };
 

@@ -15,3 +15,17 @@ export function InputWithIcon(props){
         />
     )
 };
+
+export function InputBg(props){
+    const { placeholder, onChange, value, type, label } = props;
+
+    return(
+        <div className="div-input-bg">
+            <div className="input-bg-label"> {label} </div>
+            <input placeholder={placeholder}
+            className="input-bg" style={inputStyle} onChange={onChange}
+            value={value} type={type}
+        />
+        </div>
+    )
+};
