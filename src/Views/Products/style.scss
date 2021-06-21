@@ -7,7 +7,7 @@ $colorDefault: #E0A808;
 .product
 {
     width: 150px;
-    height: 170px;
+    height: 230px;
     margin: 10px;
     display: flex;
     justify-content: center;
@@ -20,7 +20,6 @@ $colorDefault: #E0A808;
     transition: .5s;
     padding-bottom: 20px;
     padding-top: 10px;
-    // background-color: white;
 }
 .product:hover
 {

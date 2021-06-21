@@ -4,20 +4,21 @@ import "slick-carousel/slick/slick-theme.css";
 import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getProducts } from "../../Redux/actions/productActions";
+import { getProductsByCategory } from "../../Redux/actions/productActions";
 import { useDispatch } from "react-redux";
 import {Image} from 'cloudinary-react';
 import { Skeleton } from "antd";
 
-export function AllProducts(){
+export function ProductsByCategory(props){
+    const { categoryId } = props;
     const history = useHistory();
     const dispatch = useDispatch();
     const { dataShop } = useSelector(({ shops: { currentShop } }) =>currentShop);
     const { rowsProducts, loadingProducts } = useSelector(({ products: { allProducts } }) =>allProducts);
 
     useEffect(() =>{
-        getProducts(dataShop.id, 100, 0)(dispatch, history);
-    }, [dispatch]);
+        getProductsByCategory(dataShop.id, categoryId, 100, 0)(dispatch, history)
+    }, [dispatch, categoryId]);
 
 
     return(

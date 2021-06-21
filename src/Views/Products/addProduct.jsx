@@ -124,10 +124,11 @@ export function ProductForm(){
             await colorArray.forEach(color =>{
                 newColors.push(color.name)
             });
+            const filesArray = files.reverse();
             createProduct({
                 name: name,
                 categoryId: category,
-                images: files,
+                images: filesArray,
                 description: description,
                 price: price,
                 colors: newColors,

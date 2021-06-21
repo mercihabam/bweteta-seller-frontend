@@ -6,6 +6,7 @@ import { Skeleton, Space } from 'antd';
 import { useEffect } from "react";
 import { getCategorys } from "../../Redux/actions/categoryActions";
 import { useDispatch } from "react-redux";
+import { ProductsByCategory } from "./productByCategory";
 
 
 function Products(){
@@ -31,12 +32,16 @@ function Products(){
                         <Skeleton.Input style={{ width: 200 }} active={active} />
                     </Space>:
                     rowsCategorys.map((category) =>(
-                        <div onClick={() =>setActive(category.name)} className={`category ${active === category.name? "active":null}`}> {category.name} </div>
+                        <div onClick={() =>setActive(category.id)} className={`category ${active === category.id? "active":null}`}> {category.name} </div>
                     ))
                 }
             </div>
             <div>
-                <AllProducts />
+                {
+                    active === "all" ?
+                    <AllProducts />:
+                    <ProductsByCategory categoryId={active} />
+                }
             </div>
             <div className="btn-add-prod">
                 <button onClick={() =>history.push("/product/add")} className="btn-add">Créer un produit</button>
