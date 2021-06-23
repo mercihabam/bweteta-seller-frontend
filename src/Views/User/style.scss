@@ -162,6 +162,12 @@
     font-weight: bold;
     color: gray;
 }
+.profile-btn
+{
+    width: 40%;
+    margin: auto;
+    margin-top: 20px;
+}
 
 @keyframes animeCard {
     from{
@@ -186,5 +192,9 @@
     .card-link-signup
     {
         height: 70px;
+    }
+    .profile-btn
+    {
+        width: 100%;
     }
 }

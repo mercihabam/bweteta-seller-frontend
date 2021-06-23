@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import local from "antd/lib/locale/fr_FR";
 import moment from "moment";
+import { DefaultBtn } from "../../Components/buttons";
 const { Option } = Select;
 
 export function UserProfile(){
@@ -68,6 +69,9 @@ export function UserProfile(){
                                 placeholder="Date de naissance" size={20} format={dateFormat} className="profile-input" />
                         </div>
                     </ConfigProvider>
+                </div>
+                <div className="profile-btn">
+                    <DefaultBtn block={true} label="Mettre à jour" />
                 </div>
             </div>
         </div>
