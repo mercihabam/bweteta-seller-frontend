@@ -6,6 +6,7 @@ import { ProductDetail } from "../Views/Products/productDetail";
 import { UserShops } from "../Views/Shops/allByUser";
 import { CreateShop } from "../Views/Shops/createShop";
 import { Login } from "../Views/User/login";
+import { UserProfile } from "../Views/User/profile";
 import { Signup } from "../Views/User/signup";
 
 const routes = [
@@ -68,6 +69,14 @@ const routes = [
         name: "product detail",
         path: "/product/detail/:id",
         component: ProductDetail,
+        protected: true,
+        exact: true,
+        nav: true
+    },
+    {
+        name: "user profile",
+        path: "/me/profile",
+        component: UserProfile,
         protected: true,
         exact: true,
         nav: true
