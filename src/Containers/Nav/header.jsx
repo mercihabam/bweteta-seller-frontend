@@ -19,7 +19,7 @@ export function Header(props){
 
     const content = (
         <div className="pop-content">
-          <div>Profile</div>
+          <div onClick={() =>history.push("/me/profile")}>Profile</div>
           <div onClick={() =>history.push("/me/shops")}>Changer de boutique</div>
           <div onClick={disconnect} className="div-logout"> <LogoutOutlined className="icon-logout" /> Deconnexion </div>
         </div>
