@@ -1,5 +1,5 @@
 import { PhoneOutlined, ShopOutlined } from "@ant-design/icons";
-import { Button, Modal, Select } from "antd";
+import { Modal, Select } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
