@@ -1,6 +1,6 @@
 import axios from "axios";
 import { sendNotif } from "../../Utils/notification";
-import { GET_CURRENT_SHOP_ERROR, GET_CURRENT_SHOP_START, GET_CURRENT_SHOP_SUCCESS, GET_SHOPS_BY_USER_ERROR, GET_SHOPS_BY_USER_START, GET_SHOPS_BY_USER_SUCCESS } from "../actions-types/shops";
+import { GET_CURRENT_SHOP_ERROR, GET_CURRENT_SHOP_START, GET_CURRENT_SHOP_SUCCESS, GET_SHOPS_BY_USER_ERROR, GET_SHOPS_BY_USER_START, GET_SHOPS_BY_USER_SUCCESS, UPDATE_SHOP_ERROR, UPDATE_SHOP_START, UPDATE_SHOP_SUCCESS } from "../actions-types/shops";
 
 export async function getUserShops(id, dispatch, history){
     dispatch({
@@ -77,3 +77,44 @@ export async function getCurrentShop(id, dispatch, history){
         });
     }
 }
+
+
+export const updateShop = (data, shopId) => async(dispatch, history) =>{
+    dispatch({
+        type: UPDATE_SHOP_START
+    });
+
+    try {
+        const res = await axios.post(`https://seller-backend.herokuapp.com/api/v1/shops/update-shop/${shopId}`, data, {
+            headers: {
+                "auth-token": localStorage.getItem("auth-token")
+            }
+        });
+        if(res.data.status === 200){
+            dispatch({
+                type: UPDATE_SHOP_SUCCESS,
+                payload: res.data.data
+            });
+            getCurrentShop(shopId, dispatch, history);
+            sendNotif("success", res.data.msg)
+        }else if(res.data.status === 401){
+            dispatch({
+                type: UPDATE_SHOP_ERROR,
+                payload: res.data.error
+            });
+            history.push("/login", { next: "/myshop" });
+            sendNotif("error", "Veuilez d'abord vous connecter");
+        }else if(res.data.status){
+            dispatch({
+                type: UPDATE_SHOP_ERROR,
+                payload: res.data.error
+            })
+        }
+    } catch (error) {
+        dispatch({
+            type: UPDATE_SHOP_ERROR,
+            payload: "Le serveur ne reponds pas, veuillez ressayer"
+        });
+        console.error(error);
+    }
+};

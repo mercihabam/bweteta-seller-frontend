@@ -5,6 +5,7 @@ import { ProductForm } from "../Views/Products/addProduct";
 import { ProductDetail } from "../Views/Products/productDetail";
 import { UserShops } from "../Views/Shops/allByUser";
 import { CreateShop } from "../Views/Shops/createShop";
+import { ShopProfile } from "../Views/Shops/profile";
 import { Login } from "../Views/User/login";
 import { UserProfile } from "../Views/User/profile";
 import { Signup } from "../Views/User/signup";
@@ -77,6 +78,14 @@ const routes = [
         name: "user profile",
         path: "/me/profile",
         component: UserProfile,
+        protected: true,
+        exact: true,
+        nav: true
+    },
+    {
+        name: "shop profile",
+        path: "/myshop",
+        component: ShopProfile,
         protected: true,
         exact: true,
         nav: true

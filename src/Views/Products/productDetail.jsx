@@ -1,5 +1,5 @@
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { Skeleton } from "antd";
+import { Button, Skeleton } from "antd";
 import { Image } from "cloudinary-react";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -101,7 +101,9 @@ export function ProductDetail(){
                     <EditProductForm className={editClass} product={productData} />
                     <div onClick={toggleEdit} className="form-toggle">
                         {
-                            editClass === "edit-product-form" ? "Modifier le produit": "Fermer le formulaire"
+                            editClass === "edit-product-form" ? 
+                            <Button type="ghost" style={{ borderRadius: 20 }} icon={ <EditOutlined /> } >Modifier le produit</Button>
+                            : "Fermer le formulaire"
                         }
                     </div>
                 </div>

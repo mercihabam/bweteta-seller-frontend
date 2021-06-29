@@ -7,6 +7,12 @@ export default {
         error: null,
         msg: null
     },
+    updateShop: {
+        loading: false,
+        data: {},
+        error: null,
+        msg: null
+    },
     shopsByUser: {
         loading: true,
         data: {},
