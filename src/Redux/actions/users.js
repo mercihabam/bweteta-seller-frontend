@@ -1,6 +1,6 @@
 import axios from "axios"
 import { sendNotif } from "../../Utils/notification";
-import { GET_CURRENT_USER_ERROR, GET_CURRENT_USER_START, GET_CURRENT_USER_SUCCESS, LOGIN_ERROR, LOGIN_START, LOGIN_SUCCESS, SIGNUP_ERROR, SIGNUP_START, SIGNUP_SUCCESS } from "../actions-types/users"
+import { GET_CURRENT_USER_ERROR, GET_CURRENT_USER_START, GET_CURRENT_USER_SUCCESS, LOGIN_ERROR, LOGIN_START, LOGIN_SUCCESS, SIGNUP_ERROR, SIGNUP_START, SIGNUP_SUCCESS, UPDATE_USER_ERROR, UPDATE_USER_START, UPDATE_USER_SUCCESS } from "../actions-types/users"
 
 
 export async function getCurrentUser(dispatch){
@@ -87,6 +87,47 @@ export async function signup(data, dispatch){
         dispatch({
             type: SIGNUP_ERROR,
             payload: "Le serveur ne reponds pas"
+        });
+        console.error(error);
+    }
+}
+
+
+export async function updateUser(data, userId, dispatch, history){
+    dispatch({
+        type: UPDATE_USER_START
+    });
+
+    try {
+        const res = await axios.post(`https://seller-backend.herokuapp.com/api/v1/users/update-user/${userId}`, data, {
+            headers: {
+                "auth-token": localStorage.getItem("auth-token")
+            }
+        });
+        if(res.data.status === 200){
+            dispatch({
+                type: UPDATE_USER_SUCCESS,
+                payload: res.data.data.user
+            });
+            sendNotif("success", res.data.msg);
+            getCurrentUser(dispatch);
+        }else if(res.data.status === 401){
+            dispatch({
+                type: UPDATE_USER_ERROR,
+                payload: res.data.error
+            });
+            history.push("/login");
+            sendNotif("error", res.data.error);
+        }else if(res.data.error){
+            dispatch({
+                type: UPDATE_USER_ERROR,
+                payload: res.data.error
+            })
+        }
+    } catch (error) {
+        dispatch({
+            type: UPDATE_USER_ERROR,
+            payload: "Le serveur ne reponds pas,veuillez ressayer"
         });
         console.error(error);
     }

@@ -5,15 +5,21 @@ import { useSelector } from "react-redux";
 import local from "antd/lib/locale/fr_FR";
 import moment from "moment";
 import { DefaultBtn } from "../../Components/buttons";
+import { updateUser } from "../../Redux/actions/users";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 const { Option } = Select;
 
 export function UserProfile(){
     const { data } = useSelector(({ users: { currentUser } }) =>currentUser);
+    const { loading } = useSelector(({ users: { updateUser } }) =>updateUser);
     const [ name, setName ] = useState(data.fullName);
     const [ phone, setPhone ] = useState(data.phone);
     const [ email, setEmail ] = useState(data.email);
     const [ date, setDate ] = useState(data.birthDate);
     const [ city, setCity ] = useState(data.city);
+    const dispatch = useDispatch();
+    const history = useHistory();
 
     const dataCity = [
         "Goma",
@@ -25,6 +31,18 @@ export function UserProfile(){
         "Bunia"
     ];
     const dateFormat = 'DD/MM/YYYY';
+
+    const onSubmit = () =>{
+        if(name && phone &&email && date && city){
+            const localDate = moment(date).toDate();
+            updateUser({
+                fullName: name,
+                email: email,
+                birthDate: localDate,
+                phone: phone
+            }, data.id, dispatch, history);
+        }
+    };
 
     return(
         <div className="user-profile">
@@ -64,14 +82,14 @@ export function UserProfile(){
                     <div className="profile-label">Date de naissance:</div>
                     <ConfigProvider locale={local}>
                         <div className="profile-input-date">
-                            <DatePicker bordered={false} locale={local} defaultValue={moment(date, dateFormat)}
-                                onChange={(_, value) =>setDate(value)} style={{ width: "100%", borderRadius: 10, color: "gray" }}
+                            <DatePicker bordered={false} locale={local} defaultValue={moment(date)}
+                                onChange={(value, _) =>setDate(value)} style={{ width: "100%", borderRadius: 10, color: "gray" }}
                                 placeholder="Date de naissance" size={20} format={dateFormat} className="profile-input" />
                         </div>
                     </ConfigProvider>
                 </div>
                 <div className="profile-btn">
-                    <DefaultBtn block={true} label="Mettre à jour" />
+                    <DefaultBtn onClick={onSubmit} loading={loading} block={true} label="Mettre à jour" />
                 </div>
             </div>
         </div>

@@ -17,5 +17,11 @@ export default {
         data: {},
         error: null,
         msg: null
+    },
+    updateUser: {
+        loading: false,
+        data: {},
+        error: null,
+        msg: null
     }
 };

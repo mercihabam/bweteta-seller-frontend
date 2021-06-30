@@ -41,11 +41,12 @@ export function Signup(){
             if(pwd !== confirmPw){
                 setError("les mots de passes ne correspondent pas")
             }else{
+                const localDate = moment(date).toDate();
                 signup({
                     fullName: name,
                     phone: phone,
                     email: email,
-                    birthDate: date,
+                    birthDate: localDate,
                     country: "DRC",
                     city: city,
                     password: pwd,
