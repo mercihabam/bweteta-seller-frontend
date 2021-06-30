@@ -2,10 +2,10 @@ import { Image } from "cloudinary-react";
 
 
 function CloudImg(props){
-    const { className, publicId } = props;
+    const { className, publicId, onClick } = props;
 
     return(
-        <Image cloudName="mulo" publicId={publicId} className={className} />
+        <Image onClick={onClick} cloudName="mulo" publicId={publicId} className={className} />
     )
 };
 

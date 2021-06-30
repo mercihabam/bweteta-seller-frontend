@@ -152,6 +152,29 @@ $colorDefault: #E0A808;
     align-items: center;
     justify-content: center;
 }
+.shop-img
+{
+    max-width: 300px;
+    max-height: 200px;
+    cursor: pointer;
+}
+.bg-img
+{
+    width: 300px;
+    height: 200px;
+    background-color: black;
+    position: absolute;
+    z-index: 9;
+    margin-left: -4.4%;
+    border-radius: 20px;
+    opacity: 0;
+    transition: .5s ease-out;
+    cursor: pointer;
+}
+.div-shop-img:hover .bg-img
+{
+    opacity: 0.3;
+}
 .shop-letter
 {
     font-size: 50px;
@@ -210,6 +233,97 @@ $colorDefault: #E0A808;
 {
     margin-top: 20px;
 }
+.bg-full-shop-img
+{
+    position: fixed;
+    left: 0;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    padding-top: 100px;
+    padding-bottom: 40px;
+    background-color: rgba(0, 0, 0, 0.4);
+    overflow: auto;
+    display: none;
+    opacity: 0;
+    transition: .5s;
+}
+.bg-full-img
+{
+    position: fixed;
+    // left: 0;
+    right: 10px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+.bg-full-shop-img.active
+{
+    display: block;
+    opacity: 1;
+    transition: .5s;
+}
+.div-full-shop-img
+{
+    max-width: 700px;
+    margin: auto;
+    animation: scale .5s ease-in;
+    z-index: 99999;
+}
+.bg-full-shop-img::-webkit-scrollbar
+{
+    width: 10px;
+    height: 4px;
+    color: white;
+}
+.bg-full-shop-img::-webkit-scrollbar-track-piece
+{
+    background-color: transparent none;
+    border: solid 4px transparent;
+}
+.bg-full-shop-img::-webkit-scrollbar-thumb
+{
+    background-color: $colorDefault;
+    -webkit-border-radius: 5px;
+    width: 20px;
+}
+.shop-full-img
+{
+    max-width: 700px;
+    max-height: 90%;
+    display: block;
+    margin: auto;
+}
+.img-actions
+{
+    display: flex;
+    justify-content: center;
+}
+.action-edit
+{
+    background-color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transform: scale(1.5);
+    color: gray;
+    margin-right: 20px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgb(163, 163, 163);
+}
+.action-delete
+{
+    background-color: rgb(221, 0, 0);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transform: scale(1.5);
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgb(163, 163, 163);
+}
 
 @keyframes spin {
     from{
@@ -217,5 +331,21 @@ $colorDefault: #E0A808;
     }
     to{
         transform: rotate(360deg);
+    }
+}
+
+@keyframes scale {
+    from{
+        transform: scale(0.5);
+    }
+    to{
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 500px) {
+    .shop-full-img
+    {
+        max-width: 350px;
     }
 }
