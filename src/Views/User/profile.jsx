@@ -34,10 +34,11 @@ export function UserProfile(){
 
     const onSubmit = () =>{
         if(name && phone &&email && date && city){
+            const localDate = moment(date).toDate();
             updateUser({
                 fullName: name,
                 email: email,
-                birthDate: date,
+                birthDate: localDate,
                 phone: phone
             }, data.id, dispatch, history);
         }
@@ -81,8 +82,8 @@ export function UserProfile(){
                     <div className="profile-label">Date de naissance:</div>
                     <ConfigProvider locale={local}>
                         <div className="profile-input-date">
-                            <DatePicker bordered={false} locale={local} defaultValue={moment(date, dateFormat)}
-                                onChange={(_, value) =>setDate(value)} style={{ width: "100%", borderRadius: 10, color: "gray" }}
+                            <DatePicker bordered={false} locale={local} defaultValue={moment(date)}
+                                onChange={(value, _) =>setDate(value)} style={{ width: "100%", borderRadius: 10, color: "gray" }}
                                 placeholder="Date de naissance" size={20} format={dateFormat} className="profile-input" />
                         </div>
                     </ConfigProvider>
