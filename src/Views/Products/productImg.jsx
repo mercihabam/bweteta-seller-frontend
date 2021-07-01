@@ -74,6 +74,7 @@ export function ImgProd(props){
                     setLoading(false);
                     sendNotif("success", res.data.msg)
                     getProductDetail(product.id)(dispatch);
+                    setClassName("bg-full-shop-img")
                 }else if(res.data.status === 401){
                     setLoading(false);
                     history.push("/login");
