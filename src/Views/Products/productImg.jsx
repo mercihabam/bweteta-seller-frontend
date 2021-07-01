@@ -5,13 +5,12 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { makeStyles } from '@material-ui/core/styles';
 import { useState } from "react";
 import axios from "axios";
-import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { useDispatch } from "react-redux";
 import { sendNotif } from "../../Utils/notification";
-import { getCurrentShop } from "../../Redux/actions/shopActions";
 import { Popconfirm } from "antd";
 import { useRef } from "react";
+import { getProductDetail } from "../../Redux/actions/productActions";
 
 const useStyles = makeStyles((theme) => ({
   backdrop: {
@@ -22,17 +21,18 @@ const useStyles = makeStyles((theme) => ({
 
 export function ImgProd(props){
     const classes = useStyles();
-    const [ loadingDelete, setLoading ] = useState();
-    const { img, loading, className, setClassName } = props;
+    const [ loading, setLoading ] = useState();
+    const { img, className, setClassName, product } = props;
     const dispatch = useDispatch();
     const imgRef = useRef();
     const history = useHistory();
-    const { dataShop } = useSelector(({ shops: { currentShop } }) =>currentShop);
 
     const onDeleteFile = async() =>{
         try {
             setLoading(true);
-            const res = await axios.get(`https://seller-backend.herokuapp.com/api/v1/shops/delete-shop-avatar/${dataShop.id}`, {
+            const res = await axios.post(`https://seller-backend.herokuapp.com/api/v1/products/delete-product-img/${product.id}`, {
+                publicId: img
+            }, {
                 headers: {
                     "auth-token": localStorage.getItem("auth-token")
                 }
@@ -40,7 +40,7 @@ export function ImgProd(props){
             if(res.data.status === 200){
                 setLoading(false);
                 sendNotif("success", res.data.msg)
-                getCurrentShop(dataShop.id, dispatch, history);
+                getProductDetail(product.id)(dispatch);
             }else if(res.data.status === 401){
                 setLoading(false);
                 history.push("/login");
@@ -56,12 +56,39 @@ export function ImgProd(props){
     };
 
     const onEditImg = (e) =>{
-        console.log(e);
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        if(file){
+            setLoading(true);
+            reader.readAsDataURL(file);
+            reader.onloadend = async() =>{
+                const res = await axios.post(`https://seller-backend.herokuapp.com/api/v1/products/update-product-img/${product.id}`, {
+                    file: reader.result,
+                    publicId: img
+                }, {
+                    headers: {
+                        "auth-token": localStorage.getItem("auth-token")
+                    }
+                });
+                if(res.data.status === 200){
+                    setLoading(false);
+                    sendNotif("success", res.data.msg)
+                    getProductDetail(product.id)(dispatch);
+                }else if(res.data.status === 401){
+                    setLoading(false);
+                    history.push("/login");
+                    sendNotif("error", "Vous devez vous connecter")
+                }else{
+                    setLoading(false);
+                    sendNotif("error", res.data.error)
+                }
+            }
+        }
     }
 
     return(
         <div className={className}>
-            <Backdrop className={classes.backdrop} open={loading || loadingDelete}>
+            <Backdrop className={classes.backdrop} open={loading}>
                 <CircularProgress color="inherit" />
             </Backdrop>
             <div onClick={() =>setClassName("bg-full-shop-img")} className="bg-full-img"></div>

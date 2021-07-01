@@ -114,7 +114,7 @@ export function ProductDetail(){
                             : "Fermer le formulaire"
                         }
                     </div>
-                    <ImgProd className={imgClass} setClassName={setImgClass} img={clickedImg} />
+                    <ImgProd product={productData} className={imgClass} setClassName={setImgClass} img={clickedImg} />
                 </div>
             }
         </div>
