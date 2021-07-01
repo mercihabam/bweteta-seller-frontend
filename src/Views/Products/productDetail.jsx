@@ -9,6 +9,7 @@ import { useParams } from "react-router";
 import Slider from "react-slick";
 import { getProductDetail } from "../../Redux/actions/productActions";
 import { EditProductForm } from "./editProduct";
+import { ImgProd } from "./productImg";
 
 
 function SampleNextArrow(props) {
@@ -36,7 +37,9 @@ function SampleNextArrow(props) {
 export function ProductDetail(){
     const params = useParams();
     const dispatch = useDispatch();
-    const [ editClass, setEditClass ] = useState("edit-product-form")
+    const [ editClass, setEditClass ] = useState("edit-product-form");
+    const [ imgClass, setImgClass ] = useState("bg-full-shop-img");
+    const [ clickedImg, setClicked ] = useState();
     const { productData, loadingProduct } = useSelector(({ products: { productById } }) =>productById);
 
     const settings = {
@@ -61,7 +64,12 @@ export function ProductDetail(){
         }else{
             setEditClass("edit-product-form");
         }
-    }
+    };
+
+    const onImgClick = (img) =>{
+        setClicked(img);
+        setImgClass("bg-full-shop-img active");
+    };
 
     return(
         <div className="product-detail">
@@ -77,7 +85,7 @@ export function ProductDetail(){
                                 {
                                     productData.images.map(img =>(
                                         <div>
-                                            <Image cloudName="mulo" publicId={img} className="img-product-detail" />
+                                            <Image onClick={() =>onImgClick(img)} cloudName="mulo" publicId={img} className="img-product-detail" />
                                         </div>
                                     ))
                                 }
@@ -106,6 +114,7 @@ export function ProductDetail(){
                             : "Fermer le formulaire"
                         }
                     </div>
+                    <ImgProd className={imgClass} setClassName={setImgClass} img={clickedImg} />
                 </div>
             }
         </div>
