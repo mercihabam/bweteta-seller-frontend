@@ -1,4 +1,5 @@
 // import { HomaPage } from "../Containers/Pages/home";
+import Orders from "../Views/Orders";
 import OverView from "../Views/Overview";
 import Products from "../Views/Products";
 import { ProductForm } from "../Views/Products/addProduct";
@@ -86,6 +87,14 @@ const routes = [
         name: "shop profile",
         path: "/myshop",
         component: ShopProfile,
+        protected: true,
+        exact: true,
+        nav: true
+    },
+    {
+        name: "shops orders",
+        path: "/orders",
+        component: Orders,
         protected: true,
         exact: true,
         nav: true

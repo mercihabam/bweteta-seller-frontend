@@ -1,0 +1,24 @@
+$colorDefault: #E0A808;
+
+.list-orders
+{
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(206, 206, 206, 0.1);
+    padding-left: 20px;
+}
+.order-list-item
+{
+    cursor: pointer;
+    transition: .5s ease-out;
+    padding-left: 20px;
+}
+.order-list-item:hover
+{
+    background-color: #f5e1ab;
+}
+.order-list-item.ant-list-item
+{
+    padding: 20px;
+}
