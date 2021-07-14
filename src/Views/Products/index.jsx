@@ -13,7 +13,7 @@ function Products(){
     const [ active, setActive ] = useState("all");
     const history = useHistory();
     const dispatch = useDispatch();
-    const { rowsCategorys, loadingCategorys } = useSelector(({ categorys: { categorys } }) =>categorys);
+    const { dataCategorys, loadingCategorys } = useSelector(({ categorys: { categorys } }) =>categorys);
 
     useEffect(() =>{
         getCategorys(dispatch);
@@ -31,7 +31,7 @@ function Products(){
                         <Skeleton.Avatar active={active} shape="circle" />
                         <Skeleton.Input style={{ width: 200 }} active={active} />
                     </Space>:
-                    rowsCategorys.map((category) =>(
+                    dataCategorys.map((category) =>(
                         <div onClick={() =>setActive(category.id)} className={`category ${active === category.id? "active":null}`}> {category.name} </div>
                     ))
                 }

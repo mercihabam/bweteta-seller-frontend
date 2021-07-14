@@ -32,11 +32,11 @@ export function ShopProfile(){
             setLoading(true);
             reader.readAsDataURL(file);
             reader.onloadend = async() =>{
-                const res = await axios.post(`https://seller-backend.herokuapp.com/api/v1/shops/update-shop-avatar/${dataShop.id}`, {
+                const res = await axios.post(`https://bwetetamarket.herokuapp.com/api/v1/shops2/update-shop-avatar/${dataShop.id}`, {
                     file: reader.result
                 }, {
                     headers: {
-                        "auth-token": localStorage.getItem("auth-token")
+                        "x-access-token": localStorage.getItem("x-access-token")
                     }
                 });
                 if(res.data.status === 200){

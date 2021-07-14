@@ -28,7 +28,7 @@ export function Header(props){
     const title = (
         <div style={{ textAlign: "center" }} className="popover-title">
             <div className="popover-icon"> <UserOutlined /> </div>
-            <div>{data.fullName}</div>
+            <div>{data.fullname}</div>
         </div>
     )
 
@@ -52,7 +52,7 @@ export function Header(props){
                 <div className="avatar-user">
                     <Popover arrowContent placement="bottomRight" title={title} content={content} trigger="click">
                         <Avatar style={{ verticalAlign: 'middle', cursor: "pointer" }} gap={0}>
-                            {data.fullName && data.fullName.substr(0, 1)}
+                            {data.fullname && data.fullname.substr(0, 1)}
                         </Avatar>
                     </Popover>
                 </div>

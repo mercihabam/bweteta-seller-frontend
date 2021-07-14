@@ -30,9 +30,9 @@ export function ImgShop(props){
     const onDeleteFile = async() =>{
         try {
             setLoading(true);
-            const res = await axios.get(`https://seller-backend.herokuapp.com/api/v1/shops/delete-shop-avatar/${dataShop.id}`, {
+            const res = await axios.get(`https://bwetetamarket.herokuapp.com/api/v1/shops2/delete-shop-avatar/${dataShop.id}`, {
                 headers: {
-                    "auth-token": localStorage.getItem("auth-token")
+                    "x-access-token": localStorage.getItem("x-access-token")
                 }
             });
             if(res.data.status === 200){

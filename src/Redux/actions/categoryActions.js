@@ -9,7 +9,7 @@ export async function getCategorys(dispatch){
     });
 
     try {
-        const res = await axios.get(`https://seller-backend.herokuapp.com/api/v1/categorys/all-categorys`);
+        const res = await axios.get(`https://bwetetamarket.herokuapp.com/api/v1/categories`);
         if(res.data.status === 200){
             dispatch({
                 type: GET_CATEGORYS_SUCCESS,

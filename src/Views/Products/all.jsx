@@ -34,7 +34,7 @@ export function AllProducts(){
                             <div onClick={() =>history.push(`/product/detail/${product.id}`)} className="product">
                                         <div className="div-product-img">
                                             {
-                                                <Image cloudName="mulo" publicId={product.images[0]} className="img-product" />
+                                                <Image cloudName="bwetetam" publicId={product.Images[0].url} className="img-product" />
                                             }
                                         </div>
                                 <div className="product-name">{product.name}</div>

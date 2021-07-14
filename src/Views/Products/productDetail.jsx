@@ -39,7 +39,7 @@ export function ProductDetail(){
     const dispatch = useDispatch();
     const [ editClass, setEditClass ] = useState("edit-product-form");
     const [ imgClass, setImgClass ] = useState("bg-full-shop-img");
-    const [ clickedImg, setClicked ] = useState();
+    const [ clickedImg, setClicked ] = useState({});
     const { productData, loadingProduct } = useSelector(({ products: { productById } }) =>productById);
 
     const settings = {
@@ -83,9 +83,9 @@ export function ProductDetail(){
                         <div className="div-detail-imgs">
                             <Slider autoplay={false} {...settings}>
                                 {
-                                    productData.images.map(img =>(
+                                    productData.Images.map(img =>(
                                         <div>
-                                            <Image onClick={() =>onImgClick(img)} cloudName="mulo" publicId={img} className="img-product-detail" />
+                                            <Image onClick={() =>onImgClick(img)} cloudName="bwetetam" publicId={img.url} className="img-product-detail" />
                                         </div>
                                     ))
                                 }

@@ -56,7 +56,7 @@ export function AllOrders(){
                 renderItem={item => (
                 <List.Item onClick={() =>setView(true)} className="order-list-item">
                     <List.Item.Meta
-                    avatar={<Avatar src={<Image cloudName="mulo" publicId={item.images[0]} />} />}
+                    avatar={<Avatar src={<Image cloudName="bwetetam" publicId={item.Images[0].url} />} />}
                     title={<span >{item.name}</span>}
                     description={`36 Quartier Katindo, Avenue La frontiere, Goma`}
                     />

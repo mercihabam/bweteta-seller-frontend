@@ -5,7 +5,7 @@ function CloudImg(props){
     const { className, publicId, onClick } = props;
 
     return(
-        <Image onClick={onClick} cloudName="mulo" publicId={publicId} className={className} />
+        <Image onClick={onClick} cloudName="bwetetam" publicId={publicId} className={className} />
     )
 };
 
