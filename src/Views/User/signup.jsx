@@ -43,7 +43,7 @@ export function Signup(){
             }else{
                 const localDate = moment(date).toDate();
                 signup({
-                    fullName: name,
+                    fullname: name,
                     phone: phone,
                     email: email,
                     birthDate: localDate,

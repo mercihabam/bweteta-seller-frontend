@@ -30,11 +30,9 @@ export function ImgProd(props){
     const onDeleteFile = async() =>{
         try {
             setLoading(true);
-            const res = await axios.post(`https://seller-backend.herokuapp.com/api/v1/products/delete-product-img/${product.id}`, {
-                publicId: img
-            }, {
+            const res = await axios.delete(`https://bwetetamarket.herokuapp.com/api/v1/products2/delete-product-img/${img.id}`, {
                 headers: {
-                    "auth-token": localStorage.getItem("auth-token")
+                    "x-access-token": localStorage.getItem("x-access-token")
                 }
             });
             if(res.data.status === 200){
@@ -62,12 +60,12 @@ export function ImgProd(props){
             setLoading(true);
             reader.readAsDataURL(file);
             reader.onloadend = async() =>{
-                const res = await axios.post(`https://seller-backend.herokuapp.com/api/v1/products/update-product-img/${product.id}`, {
+                const res = await axios.post(`https://bwetetamarket.herokuapp.com/api/v1/products2/update-product-img/${img.id}`, {
                     file: reader.result,
-                    publicId: img
+                    publicId: img.url
                 }, {
                     headers: {
-                        "auth-token": localStorage.getItem("auth-token")
+                        "x-access-token": localStorage.getItem("x-access-token")
                     }
                 });
                 if(res.data.status === 200){
@@ -94,7 +92,7 @@ export function ImgProd(props){
             </Backdrop>
             <div onClick={() =>setClassName("bg-full-shop-img")} className="bg-full-img"></div>
             <div className="div-full-shop-img">
-                <CloudImg publicId={img} className="shop-full-img" />
+                <CloudImg publicId={img.url} className="shop-full-img" />
                 <input type="file" accept="image/*" onChange={onEditImg} ref={imgRef} style={{ display: "none" }}/>
                 <div className="img-actions">
                     <div className="action-edit-img">

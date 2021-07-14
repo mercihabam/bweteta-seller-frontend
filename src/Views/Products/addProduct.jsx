@@ -127,7 +127,7 @@ export function ProductForm(){
             const filesArray = files.reverse();
             createProduct({
                 name: name,
-                categoryId: category,
+                categoryId: 1,
                 images: filesArray,
                 description: description,
                 price: price,

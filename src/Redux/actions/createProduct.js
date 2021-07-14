@@ -10,9 +10,9 @@ const createProduct = (data) => async(dispatch, history) =>{
     });
     loadingMsg("Patientez...");
     try {
-        const res = await axios.post(`https://seller-backend.herokuapp.com/api/v1/products/create-product`, data, {
+        const res = await axios.post(`https://bwetetamarket.herokuapp.com/api/v1/products2/create-product`, data, {
             headers: {
-                "auth-token": localStorage.getItem("auth-token")
+                "x-access-token": localStorage.getItem("x-access-token")
             }
         });
         if(res.data.status === 201){

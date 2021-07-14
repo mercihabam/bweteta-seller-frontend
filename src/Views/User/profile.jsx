@@ -13,10 +13,10 @@ const { Option } = Select;
 export function UserProfile(){
     const { data } = useSelector(({ users: { currentUser } }) =>currentUser);
     const { loading } = useSelector(({ users: { updateUser } }) =>updateUser);
-    const [ name, setName ] = useState(data.fullName);
+    const [ name, setName ] = useState(data.fullname);
     const [ phone, setPhone ] = useState(data.phone);
     const [ email, setEmail ] = useState(data.email);
-    const [ date, setDate ] = useState(data.birthDate);
+    const [ date, setDate ] = useState(data.birthdate);
     const [ city, setCity ] = useState(data.city);
     const dispatch = useDispatch();
     const history = useHistory();
@@ -36,10 +36,11 @@ export function UserProfile(){
         if(name && phone &&email && date && city){
             const localDate = moment(date).toDate();
             updateUser({
-                fullName: name,
+                fullname: name,
                 email: email,
                 birthDate: localDate,
-                phone: phone
+                phone: phone,
+                city: city
             }, data.id, dispatch, history);
         }
     };
@@ -49,7 +50,7 @@ export function UserProfile(){
             <div className="profile-avatar">
                 <div className="profile-icon"> <UserOutlined /> </div>
                 <div className="profile-info">
-                    <div className="profile-name"> { data.fullName } </div>
+                    <div className="profile-name"> { data.fullname } </div>
                     <div className="profile-email"> { data.email } </div>
                 </div>
             </div>

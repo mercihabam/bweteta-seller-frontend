@@ -94,7 +94,7 @@ export function EditProductForm(props){
         colorsChanges();
     }, [product])
 
-    const { rowsCategorys, loadingCategorys } = useSelector(({ categorys: { categorys } }) =>categorys);
+    const { dataCategorys, loadingCategorys } = useSelector(({ categorys: { categorys } }) =>categorys);
     const { loadingUpdate } = useSelector(({ products: { updateProduct } }) =>updateProduct);
 
     const onUpdate = () =>{
@@ -123,7 +123,7 @@ export function EditProductForm(props){
                  defaultValue={category}
                  >
                     {
-                        rowsCategorys.map(data =>(
+                        dataCategorys.map(data =>(
                             <Option value={data.id} key={data.id} > {data.name} </Option>
                         ))
                     }
@@ -147,8 +147,8 @@ export function EditProductForm(props){
                 <div className="product-currency">
                     <div className="edit-label">Devise</div>
                     <Select defaultValue={currency} onChange={(value) =>setCurrency(value)} placeholder="Devise de la monnaie" name="currency" style={{ width: "100%", borderRadius: 5}}>
-                        <Option value="USD" key="USD" > USD </Option>
-                        <Option value="CDF" key="CDF" > CDF </Option>
+                        <Option value="$" key="USD" > $ </Option>
+                        <Option value="FC" key="CDF" > FC </Option>
                     </Select>
                 </div>
             </div>

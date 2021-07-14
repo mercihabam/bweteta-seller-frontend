@@ -8,9 +8,9 @@ export async function getCurrentUser(dispatch){
         type: GET_CURRENT_USER_START
     })
     try {
-        const res = await axios.get(`https://seller-backend.herokuapp.com/api/v1/users/current-user`, {
+        const res = await axios.get(`https://bwetetamarket.herokuapp.com/api/v1/users2/current-user`, {
             headers: {
-                "auth-token": localStorage.getItem("auth-token")
+                "x-access-token": localStorage.getItem("x-access-token")
             }
         });
         if(res.data.status === 200){
@@ -38,14 +38,14 @@ export async function login(data, next, dispatch, history){
     });
 
     try {
-        const res = await axios.post(`https://seller-backend.herokuapp.com/api/v1/users/login`, data);
+        const res = await axios.post(`https://bwetetamarket.herokuapp.com/api/v1/users2/login`, data);
         if(res.data.status === 200){
             dispatch({
                 type: LOGIN_SUCCESS,
                 payload: res.data.data.user
             });
             localStorage.setItem("old-visitor", true);
-            localStorage.setItem("auth-token", res.data.data.token);
+            localStorage.setItem("x-access-token", res.data.data.token);
             window.location = next;
         }else if(res.data.error){
             dispatch({
@@ -54,10 +54,18 @@ export async function login(data, next, dispatch, history){
             });
         }
     } catch (error) {
-        dispatch({
-            type: LOGIN_ERROR,
-            payload: "Le serveur ne reponds pas"
-        })
+        const res = error.response;
+        if(res && res.data.msg){
+            dispatch({
+                type: LOGIN_ERROR,
+                payload: res.data.msg
+            })
+        }else{
+            dispatch({
+                type: LOGIN_ERROR,
+                payload: "Veuillez reessayer"
+            })
+        }
     }
 };
 
@@ -68,13 +76,13 @@ export async function signup(data, dispatch){
     });
 
     try {
-        const res = await axios.post(`https://seller-backend.herokuapp.com/api/v1/users/signup`, data);
+        const res = await axios.post(`https://bwetetamarket.herokuapp.com/api/v1/users2/signup`, data);
         if(res.data.status === 201){
             dispatch({
                 type: SIGNUP_SUCCESS,
                 payload: res.data.data.user
             });
-            localStorage.setItem("auth-token", res.data.data.token);
+            localStorage.setItem("x-access-token", res.data.data.token);
             sendNotif("success", res.data.msg);
             window.location = "/me/shops";
         }else if(res.data.error){
@@ -84,10 +92,18 @@ export async function signup(data, dispatch){
             })
         }
     } catch (error) {
-        dispatch({
-            type: SIGNUP_ERROR,
-            payload: "Le serveur ne reponds pas"
-        });
+        const res = error.response;
+        if(res && res.data.msg){
+            dispatch({
+                type: SIGNUP_ERROR,
+                payload: res.data.msg
+            });
+        }else{
+            dispatch({
+                type: SIGNUP_ERROR,
+                payload: "Veuillez reessayer"
+            });
+        }
         console.error(error);
     }
 }
@@ -99,9 +115,9 @@ export async function updateUser(data, userId, dispatch, history){
     });
 
     try {
-        const res = await axios.post(`https://seller-backend.herokuapp.com/api/v1/users/update-user/${userId}`, data, {
+        const res = await axios.post(`https://bwetetamarket.herokuapp.com/api/v1/users2/update-user/${userId}`, data, {
             headers: {
-                "auth-token": localStorage.getItem("auth-token")
+                "x-access-token": localStorage.getItem("x-access-token")
             }
         });
         if(res.data.status === 200){
@@ -123,6 +139,7 @@ export async function updateUser(data, userId, dispatch, history){
                 type: UPDATE_USER_ERROR,
                 payload: res.data.error
             })
+            sendNotif("error", res.data.error);
         }
     } catch (error) {
         dispatch({

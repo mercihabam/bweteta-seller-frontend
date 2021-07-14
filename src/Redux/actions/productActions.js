@@ -10,9 +10,9 @@ export const getProducts = (shopId, limit, offset) => async(dispatch, history) =
         type: GET_PRODUCTS_START
     });
     try {
-        const res = await axios.get(`https://seller-backend.herokuapp.com/api/v1/products/products-by-shop/${shopId}?limit=${limit}&offset=${offset}`, {
+        const res = await axios.get(`https://bwetetamarket.herokuapp.com/api/v1/products2/products-by-shop/${shopId}?limit=${limit}&offset=${offset}`, {
             headers: {
-                "auth-token": localStorage.getItem("auth-token")
+                "x-access-token": localStorage.getItem("x-access-token")
             }
         });
         if(res.data.status === 200){
@@ -48,9 +48,9 @@ export const getProductsByCategory = (shopId, categoryId, limit, offset) => asyn
         type: GET_PRODUCTS_START
     });
     try {
-        const res = await axios.get(`https://seller-backend.herokuapp.com/api/v1/products/products-shop-by-category/${shopId}/${categoryId}?limit=${limit}&offset=${offset}`, {
+        const res = await axios.get(`https://bwetetamarket.herokuapp.com/api/v1/products2/products-shop-by-category/${shopId}/${categoryId}?limit=${limit}&offset=${offset}`, {
             headers: {
-                "auth-token": localStorage.getItem("auth-token")
+                "x-access-token": localStorage.getItem("x-access-token")
             }
         });
         if(res.data.status === 200){
@@ -87,9 +87,9 @@ export const getProductDetail = (productId) => async(dispatch) =>{
         type: GET_PRODUCT_START
     });
     try {
-        const res = await axios.get(`https://seller-backend.herokuapp.com/api/v1/products/product-by-id/${productId}`, {
+        const res = await axios.get(`https://bwetetamarket.herokuapp.com/api/v1/products2/product-by-id/${productId}`, {
             headers: {
-                "auth-token": localStorage.getItem("auth-token")
+                "x-access-token": localStorage.getItem("x-access-token")
             }
         });
         if(res.data.status === 200){
@@ -118,9 +118,9 @@ export const updateProduct = (data, productId) => async(dispatch) =>{
         type: UPDATE_PRODUCT_START
     });
     try {
-        const res = await axios.post(`https://seller-backend.herokuapp.com/api/v1/products/update-product/${productId}`, data, {
+        const res = await axios.post(`https://bwetetamarket.herokuapp.com/api/v1/products2/update-product/${productId}`, data, {
             headers: {
-                "auth-token": localStorage.getItem("auth-token")
+                "x-access-token": localStorage.getItem("x-access-token")
             }
         });
         if(res.data.status === 200){

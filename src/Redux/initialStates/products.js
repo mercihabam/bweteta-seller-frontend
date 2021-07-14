@@ -21,7 +21,7 @@ export default {
     productById:
     {
         loadingProduct: true,
-        productData: { images: [], colors: [] },
+        productData: { Images: [], colors: [] },
         error: null
     }
 }

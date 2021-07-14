@@ -9,9 +9,9 @@ const createShop = (data) => async(dispatch, history) =>{
     });
 
     try {
-        const res = await axios.post(`https://seller-backend.herokuapp.com/api/v1/shops/create-shop`, data, {
+        const res = await axios.post(`https://bwetetamarket.herokuapp.com/api/v1/shops2/create-shop`, data, {
             headers: {
-                "auth-token": localStorage.getItem("auth-token")
+                "x-access-token": localStorage.getItem("x-access-token")
             }
         });
         if(res.data.status === 201){

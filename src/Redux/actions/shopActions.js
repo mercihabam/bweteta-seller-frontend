@@ -7,9 +7,9 @@ export async function getUserShops(id, dispatch, history){
         type: GET_SHOPS_BY_USER_START
     });
     try {
-        const res = await axios.get(`https://seller-backend.herokuapp.com/api/v1/shops/get-by-admin/${id}`, {
+        const res = await axios.get(`https://bwetetamarket.herokuapp.com/api/v1/shops2/get-by-admin/${id}`, {
             headers: {
-                "auth-token": localStorage.getItem("auth-token")
+                "x-access-token": localStorage.getItem("x-access-token")
             }
         });
         if(res.data.status === 200){
@@ -43,9 +43,9 @@ export async function getCurrentShop(id, dispatch, history){
         type: GET_CURRENT_SHOP_START
     });
     try {
-        const res = await axios.get(`https://seller-backend.herokuapp.com/api/v1/shops/get-actvated-by-id/${id}`, {
+        const res = await axios.get(`https://bwetetamarket.herokuapp.com/api/v1/shops2/get-actvated-by-id/${id}`, {
             headers: {
-                "auth-token": localStorage.getItem("auth-token")
+                "x-access-token": localStorage.getItem("x-access-token")
             }
         });
         if(res.data.status === 200){
@@ -85,9 +85,9 @@ export const updateShop = (data, shopId) => async(dispatch, history) =>{
     });
 
     try {
-        const res = await axios.post(`https://seller-backend.herokuapp.com/api/v1/shops/update-shop/${shopId}`, data, {
+        const res = await axios.post(`https://bwetetamarket.herokuapp.com/api/v1/shops2/update-shop/${shopId}`, data, {
             headers: {
-                "auth-token": localStorage.getItem("auth-token")
+                "x-access-token": localStorage.getItem("x-access-token")
             }
         });
         if(res.data.status === 200){
