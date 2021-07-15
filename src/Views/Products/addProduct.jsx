@@ -140,7 +140,7 @@ export function ProductForm(){
         }
     };
 
-    const { rowsCategorys, loadingCategorys } = useSelector(({ categorys: { categorys } }) =>categorys);
+    const { dataCategorys, loadingCategorys } = useSelector(({ categorys: { categorys } }) =>categorys);
 
     return(
         <div className="form-product">
@@ -164,7 +164,7 @@ export function ProductForm(){
                  loading={loadingCategorys}
                  >
                     {
-                        rowsCategorys.map(data =>(
+                        dataCategorys.map(data =>(
                             <Option value={data.id} key={data.id} > {data.name} </Option>
                         ))
                     }

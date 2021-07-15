@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
+import { getOrders } from '../../Redux/actions/ordersActions';
 import { getProducts } from '../../Redux/actions/productActions';
 import { OrderDetail } from './orderDetail';
 
@@ -38,9 +39,11 @@ export function AllOrders(){
     const dispatch = useDispatch();
     const { dataShop } = useSelector(({ shops: { currentShop } }) =>currentShop);
     const { rowsProducts, loadingProducts, countProducts } = useSelector(({ products: { allProducts } }) =>allProducts);
+    const { data, loading, rows, count } = useSelector(({ orders: { orders } }) =>orders);
 
     useEffect(() =>{
         getProducts(dataShop.id, 100, 0)(dispatch, history);
+        getOrders(dispatch, history, dataShop.id);
     }, [dispatch]);
 
     return(
