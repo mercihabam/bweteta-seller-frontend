@@ -8,6 +8,8 @@ import { useHistory } from 'react-router';
 import { getOrders } from '../../Redux/actions/ordersActions';
 import { getProducts } from '../../Redux/actions/productActions';
 import { OrderDetail } from './orderDetail';
+import { DollarOutlined } from "@ant-design/icons";
+import { ProductImg } from '../../Utils/productImg';
 
 const data = [
     {
@@ -35,16 +37,21 @@ const data = [
 
 export function AllOrders(){
     const [ viewDetail, setView ] = useState();
+    const [ clicked, setClicked ] = useState({ Product: {} });
     const history = useHistory();
     const dispatch = useDispatch();
     const { dataShop } = useSelector(({ shops: { currentShop } }) =>currentShop);
-    const { rowsProducts, loadingProducts, countProducts } = useSelector(({ products: { allProducts } }) =>allProducts);
-    const { data, loading, rows, count } = useSelector(({ orders: { orders } }) =>orders);
+    const { loading, rows, count } = useSelector(({ orders: { orders } }) =>orders);
 
     useEffect(() =>{
         getProducts(dataShop.id, 100, 0)(dispatch, history);
         getOrders(dispatch, history, dataShop.id);
     }, [dispatch]);
+
+    const onOrderClick = (order) =>{
+        setClicked(order);
+        setView(true);
+    }
 
     return(
         <div className="orders">
@@ -54,22 +61,22 @@ export function AllOrders(){
                 style={{
                     padding: 20
                 }}
-                loading={loadingProducts}
-                dataSource={rowsProducts}
+                loading={loading}
+                dataSource={rows}
                 renderItem={item => (
-                <List.Item onClick={() =>setView(true)} className="order-list-item">
+                <List.Item onClick={() =>onOrderClick(item)} className="order-list-item">
                     <List.Item.Meta
-                    avatar={<Avatar src={<Image cloudName="bwetetam" publicId={item.Images[0].url} />} />}
-                    title={<span >{item.name}</span>}
-                    description={`36 Quartier Katindo, Avenue La frontiere, Goma`}
+                    avatar={<Avatar src={ <ProductImg productId={item.ProductId} /> } />}
+                    title={<span >{item.Product.name}</span>}
+                    description={`Quantité: ${item.quantity}, Prix total: ${item.totalPrice}${item.Product.currency} ${item.color ? ", Couleur"+item.color: ""}`}
                     />
                 </List.Item>
                 )}
                 footer={
-                    <Pagination defaultCurrent={1} total={countProducts} />
+                    <Pagination defaultCurrent={1} total={count} />
                 }
             />
-            <OrderDetail visible={viewDetail} setVisible={setView} />
+            <OrderDetail order={clicked} visible={viewDetail} setVisible={setView} />
         </div>
     )
 }

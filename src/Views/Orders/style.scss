@@ -22,3 +22,36 @@ $colorDefault: #E0A808;
 {
     padding: 20px;
 }
+.order-infos
+{
+    margin-top: 20px;
+    text-align: center;
+}
+.order-infos div 
+{
+    margin-bottom: 10px;
+}
+.order-infos div span
+{
+    font-weight: bold;
+}
+.order-detail
+{
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.order-price
+{
+    border-top: 1px solid gray;
+    max-width: 170px;
+    margin-top: 0px;
+    padding-top: 15px;
+}
+.btn-approve
+{
+    margin-top: 20px;
+}
