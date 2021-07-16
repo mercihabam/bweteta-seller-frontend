@@ -1,15 +1,16 @@
-import { Drawer, Divider, Col, Row } from 'antd';
+import { Drawer } from 'antd';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { DefaultBtn } from '../../Components/buttons';
+import { approveOrder } from '../../Redux/actions/ordersActions';
 
-const DescriptionItem = ({ title, content }) => (
-  <div className="site-description-item-profile-wrapper">
-    <p className="site-description-item-profile-p-label">{title}:</p>
-    {content}
-  </div>
-);
 
 export function OrderDetail(props) {
     const { visible, setVisible, order } = props;
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const { loading } = useSelector(({ orders: { approveOrder } }) =>approveOrder);
 
     return (
       <>
@@ -49,7 +50,7 @@ export function OrderDetail(props) {
             {
               order.status === "pending" ?
               <div className="btn-approve">
-                <DefaultBtn label="Approuver" />
+                <DefaultBtn loading={loading} onClick={() =>approveOrder(dispatch, history, order.id, order.shopId)} label="Approuver" />
               </div>:null
             }
           </div>

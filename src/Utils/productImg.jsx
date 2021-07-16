@@ -22,7 +22,7 @@ export function ProductImg(props){
             }
         };
         fetchImgs();
-    });
+    }, [productId]);
 
     return(
         <>
