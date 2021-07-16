@@ -1,5 +1,4 @@
 import { List, Avatar, Pagination } from 'antd';
-import { Image } from 'cloudinary-react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
@@ -8,31 +7,10 @@ import { useHistory } from 'react-router';
 import { getOrders } from '../../Redux/actions/ordersActions';
 import { getProducts } from '../../Redux/actions/productActions';
 import { OrderDetail } from './orderDetail';
-import { DollarOutlined } from "@ant-design/icons";
 import { ProductImg } from '../../Utils/productImg';
-
-const data = [
-    {
-        product: "Iphone 6",
-        adress: "36 Quartier Katindo, Avenue La frontiere",
-        city: "Goma"
-    },
-    {
-        product: "Macbook pro",
-        adress: "36 Quartier Katindo, Avenue La frontiere",
-        city: "Goma"
-    },
-    {
-        product: "Airmax 720",
-        adress: "36 Quartier Katindo, Avenue La frontiere",
-        city: "Goma"
-    },
-    {
-        product: "Hp Elitebook",
-        adress: "36 Quartier Katindo, Avenue La frontiere",
-        city: "Goma"
-    }
-];
+import moment from 'moment';
+import localization from "moment/locale/fr-ch";
+import { ClockCircleOutlined } from '@ant-design/icons';
 
 
 export function AllOrders(){
@@ -68,7 +46,13 @@ export function AllOrders(){
                     <List.Item.Meta
                     avatar={<Avatar src={ <ProductImg productId={item.ProductId} /> } />}
                     title={<span >{item.Product.name}</span>}
-                    description={`Quantité: ${item.quantity}, Prix total: ${item.totalPrice}${item.Product.currency} ${item.color ? ", Couleur"+item.color: ""}`}
+                    description={ <div className="div-item-desc">
+                        Quantité: ${item.quantity}, Prix total: {item.totalPrice}{item.Product.currency} {item.color ? ", Couleur"+item.color: ""}
+                        <div className="item-date"> <ClockCircleOutlined /> { moment(item.createdAt).locale("fr", localization).format("ll") }, { moment(item.createdAt).locale("fr", localization).format("LT") } </div>
+                        {
+                        item.status === "pending" ? <div className="div-status-pending">En attente</div>: <div className="div-status-approved">Approuvé</div>
+                    }
+                    </div> }
                     />
                 </List.Item>
                 )}
