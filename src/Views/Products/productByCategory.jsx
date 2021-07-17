@@ -8,6 +8,7 @@ import { getProductsByCategory } from "../../Redux/actions/productActions";
 import { useDispatch } from "react-redux";
 import {Image} from 'cloudinary-react';
 import { Skeleton } from "antd";
+import { ProductImg } from "../../Utils/productImg";
 
 export function ProductsByCategory(props){
     const { categoryId } = props;
@@ -35,7 +36,7 @@ export function ProductsByCategory(props){
                             <div onClick={() =>history.push(`/product/detail/${product.id}`)} className="product">
                                         <div className="div-product-img">
                                             {
-                                                <Image cloudName="bwetetam" publicId={product.Images[0].url} className="img-product" />
+                                                <ProductImg productId={product.id} className="img-product" />
                                             }
                                         </div>
                                 <div className="product-name">{product.name}</div>
