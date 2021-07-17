@@ -1,4 +1,4 @@
-import { AppstoreOutlined, WalletOutlined } from "@ant-design/icons";
+import { AppstoreOutlined, InstagramOutlined, WalletOutlined } from "@ant-design/icons";
 import { CDropdownItem } from "@coreui/react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -36,6 +36,21 @@ function OverView(){
                     iconWidget={<WalletOutlined style={{ transform: "scale(1.3)", verticalAlign: "middle" }}/>}
                 />
                 <FacebookWidget />
+                <div className="insta-widget">
+                    <div className="insta-back">
+                        <InstagramOutlined className="insta-icon" />
+                    </div>
+                    <div className="insta-stat">
+                        <div className="insta-like">
+                            <div className="number-like"> 500 </div>
+                            <div className="title-like"> J'AIME </div>
+                        </div>
+                        <div className="insta-post">
+                            <div className="number-like"> 35 </div>
+                            <div className="title-like"> POSTS </div>
+                        </div>
+                    </div>
+                </div>
                 <GradientWidget header={countProducts} text="Produits" 
                     pointColor="primary" color="gradient-primary"
                     DropItem={

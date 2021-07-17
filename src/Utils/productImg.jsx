@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import CloudImg from "./cloudImg";
 
 export function ProductImg(props){
-    const { productId } = props;
+    const { productId, className } = props;
     const [ loading, setLoading ] = useState(true);
     const [ img, setImg ] = useState();
 
@@ -28,7 +28,7 @@ export function ProductImg(props){
         <>
             {
                 loading ? <LoadingOutlined />:
-                <CloudImg publicId={img} />
+                <CloudImg publicId={img} className={className} />
             }
         </>
     )
